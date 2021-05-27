@@ -1,0 +1,856 @@
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<style>
+			div{
+				width: 512px;
+				padding: 10px;
+				border-color: black;
+				border-width: 1px;
+				border-style: solid;
+			}
+			div.comment{
+				width: 490px;
+				border-style: none;
+				background-color: #EEEEEE;
+			}
+			img{
+				width: 512px;
+			}
+			img.half-width{
+				width: 250px;
+			}
+			p.date{
+				color: #888888;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div>
+			<p>
+				<h2>Current cicuit design</h2>
+			</p>
+			<p class="date">
+				25/11/2020	5:34PM
+			</p>
+			<p>
+				I am currently using a circuit design software called <a href="https://kicad.org/"><span style="color: #0000ff;">KiCad</span></a> to design the circuit to make use of an <a href="https://www.mouser.co.uk/datasheet/2/389/lsm9ds1-1849526.pdf"><span style="color: #0000ff;">IMU</span></a>&nbsp;that will allow me to collect information about the acceleration,&nbsp;orientation and altitude of the prototype; this will form the basis of the TVC system.
+			</p>
+			<p>
+				<img src="initial circuit.png">
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Circuit design issue</h2>
+			</p>
+			<p class="date">
+				26/11/2020	12:11PM
+			</p>
+			<p>
+				I have just checked the availability of the IMU I was planning to use to find that it is no longer available on the <a href="https://www.mouser.co.uk/ProductDetail/STMicroelectronics/LSM9DS1?qs=4b8myOmUP%252Bs%2Fbmi4Ts21DQ%3D%3D"><span style="color: #0000ff">site I was looking at it on</span></a>.&nbsp; I will either need to find somewhere else that sells it, or find a diffrent product to use.
+			</p>
+		</div>
+
+
+
+		<div id="ENTRY-Looking at alternative chips">
+			<p>
+				<h2>Looking at alternative chips</h2>
+			</p>
+			<p class="date">
+				26/11/2020	12:46PM
+			</p>
+			<p>
+				After a quick search on <a href="https://www.mouser.co.uk/"><span style="color: #0000ff">Mouser</span></a>, I have found two potential chips:
+			</p>
+			<ul>
+				<li>
+					<a href="https://www.mouser.co.uk/ProductDetail/STMicroelectronics/LSM6DSOXTR?qs=l7cgNqFNU1i9dcjzItLpVQ%3D%3D">LSM6DSOXTR</a>
+				</li>
+				<li>
+					<span style="color: #0000ff; font-size: 13px; text-decoration-color: initial;"><a href="https://www.mouser.co.uk/ProductDetail/STMicroelectronics/LSM6DSO32TR?qs=rI7uf1IzohQPdukPhHG9Gw%3D%3D">LSM6DSO32R</a></span>
+				</li>
+			</ul>
+			<p>
+				<span style="color: #333333; font-size: 13px; text-decoration-color: initial;">I will probably use the latter as it has better functionality and accuracy.</span>
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>New chip</h2>
+			</p>
+			<p class="date">
+				26/11/2020	1:25PM
+			</p>
+			<p>
+				Current state of new IC: most connections have been labelled or removed and power has been mostly set out.
+			</p>
+			<p>
+				<img src="second circuit.png">
+	    	</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>New chip: finished!</h2>
+			</p>
+			<p class="date">
+				26/11/2020	1:41PM
+			</p>
+			<p>
+				The circuit has each of the inputs I will need to use labelled and a 5V input (from the Arduino I plan to use) divided to produce the 1.8V supply for the IC.
+			</p>
+			<p>
+	    		<img src="second circuit 2.png">
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Components received and assembled</h2>
+			</p>
+			<p class="date">
+				14/12/2020	3:40PM
+			</p>
+			<p>
+				I have received and assembled the components from the last few posts:
+			</p>
+			<p>
+				<img src="spider 1.png">
+			</p>
+			<p>
+				The above shows the measurement unit connected to the Arduino through I²C (a data interface protocol) which allowed me to read data from the measurement unit.&nbsp; I used the data sheet mentioned in the "<a href="#ENTRY-Looking at alternative chips"><span style="color:#0000ff">Looking at alternative chips</span></a>" post to allow me to do this.
+			</p>
+			<p>
+				However, the measurement unit was much, much smaller than expected (2mm by 2mm small) making it very fragile...
+			</p>
+			<p>
+				<img src="spider 2.png">
+			</p>
+			<p>
+				This made it very hard to solder to and is the main reason that one of the solder pads fell off. As a result, I have decided to design my own PCB and get it printed (probably by <a href="https://jlcpcb.com/">JLCPCB.com</a> or simillar service.
+			</p>
+			<p>
+				With the above setup, I was able to figure out and test how to get data from the chip using the I2C protocol showing that the concept worked and that I would be able to use an Arduino to get the data that I would need.
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Continuing to design circuit</h2>
+			</p>
+			<p class="date">
+				14/12/2020	9:38PM
+			</p>
+			<p>
+				After the issue of the very, very, very small components and the decision to swap to having PCBs made, I have picked out two ICs (an accelerometer and a gyroscope) that are stocked by <a href="https://jlcpcb.com/"><span style="color:#0000ff">the PCB producer</span></a>:
+			</p>
+			<p>
+				Accelerometer: <a href="https://datasheet.lcsc.com/szlcsc/1810010329_STMicroelectronics-LIS2DH12TR_C110926.pdf"><span style="color:#0000ff">LIS2DH12TR</span></a>
+	    		<br />Gyroscope: <a href="https://datasheet.lcsc.com/szlcsc/1811071023_STMicroelectronics-L3GD20HTR_C128360.pdf"><span style="color:#0000ff">L3GD20HTR</span></a>
+			</p>
+			<p>
+	    		<img src="third circuit.png">
+			</p>
+		    <p>
+		    	The above image shows the two ICs with all the necessary connections labelled. It also includes some things that I learnt while experimenting with the previous components, eg. the smaller part at the bottom with two labels, two resistors and a power source is needed for the I²C communication protocol to function.
+			</p>
+			<p>
+				The next step will be drawing this out into something that can be printed rather than just a block diagram.&nbsp; I will also need to consider how I will connect this board to the Arduino; I will probably put pins on the bottom of the breakout board and plug it into the breadboard with the Arduino.
+			</p>
+			<div class="comment">
+				<p class="date">
+					16/12/2020	10:52AM
+				</p>
+			    <p>
+			    	List of other components from <a href="https://jlcpcb.com/"><span style="color:#0000ff">the PCB producer</span></a>:
+			    </p>
+			    <ul>
+				    <li>
+				    	1206W4F1002T5E (10kOhm resistor)
+				    </li>
+				    <li>
+				    	CL05B104KO5NNNC (100nF capacitor)
+				    </li>
+				    <li>
+				    	C4532C0G2J103JT000N (10nF reference capacitor)
+				    </li>
+				    <li>
+				    	CL05A106MQ5NUNC (10uF capacitor)
+				    </li>
+				</ul>
+				<p>
+				   	Next step will be putting this information into Gerber format (an industry standard for circuit board printing).
+				</p>
+			</div>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>PCB complete</h2>
+			</p>
+			<p class="date">
+				19/12/2020	11:33PM
+			</p>
+			<p>
+				I have finished designing the PCB for the two ICs and have included 3D models from the manufactues of the parts to get a better idea of what the PCBs will look like.  The sets of pins will probably end up under the board rather than on top of it.
+			</p>
+			<p>
+				<img src="render.png">
+			</p>
+			<p>
+	    		<img src="layout.png">
+			</p>
+			<p>
+			    I also cleaned up the circuit diagram into blocks to make it more readable.
+			</p>
+			<p>
+	    		<img src="block.png">
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Unable to get one of the components</h2>
+			</p>
+			<p class="date">
+				18/1/2021	1:57PM
+			</p>
+			<p>
+	    		The PCB manufacturer I was looking at doesn't currently have one of the parts that I need for the board so I will have to look else where for the same components or redesign using one of the components that they have avaliable.
+			</p>
+			<p>
+	    		<img src="part list 1.png">
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Need to change to a different component</h2>
+			</p>
+			<p class="date">
+				26/1/2021	3:29PM
+			</p>
+			<p>
+	    		Currently looking at another website (<a href="https://pcbtrain.co.uk/"><span style="color:#0000ff">PCBTrain</span></a>) as they provide a service in which they source components beyond those in a given list.
+			</p>
+			<p>
+				<img src="part list 2.png">
+			</p>
+			<p>
+			    However, the component I was looking at is still not avaliable, it seems likely that the component is in shortage and I will need to find an alternative. Though with the large number of avaliable components on the new site, I should be easily able to find a suitable one.
+			</p>
+			<div class="comment">
+				<p class="date">
+					28/1/2021	8:10PM
+				</p>
+				<p>
+					I just came across a new component that seems to fit all my current needs:
+					<ul>
+						<li>
+							Gyroscope
+						</li>
+						<li>
+							Accelerometer
+						</li>
+						<li>
+							I2C
+						</li>
+						<li>
+							large numbers in stock
+						</li>
+						<li>
+							small
+						</li>
+						<li>
+							low power
+						</li>
+					</ul>
+				</p>
+				<p>
+					<a href="https://www.mouser.co.uk/ProductDetail/TDK-InvenSense/ICM-20948/?qs=u4fy%2FsgLU9OtGc31yF%2Friw%3D%3D"><span style="#0000ff">ICM-20948</span></a>
+				</p>
+			</div>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>New cicuit design</h2>
+			</p>
+			<p class="date">
+				28/1/2021	10:59PM
+			</p>
+			<p>
+	    		I have redesigned the circuit to take advantage of the new IC that I came across. The circuit is much smaller as all the functionality I need is within the single chip.
+			</p>
+			<p>
+	    		<img src="final circuit.png">
+	        </p>
+	        <p>
+	        	I used the <a href="https://product.tdk.com/info/en/documents/catalog_datasheet/imu/DS-000189-ICM-20948-v1.3.pdf"><span style="color:#0000ff;">datasheet</span></a> to figure out what I needed to wire the new IC.
+	        </p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>PCB design complete</h2>
+			</p>
+			<p class="date">
+				28/1/2021	11:45PM
+			</p>
+			<p>
+				I have finished the first stage (symbol diagram) of the new circuit and uploaded the BOM (bill of materials) to the site I plan to use to check that the components are avaliable.
+			</p>
+			<p>
+				I modified the python script that generates the bill of matrials so it could output the format that the website wants. Below shows the table of materials before export.
+			</p>
+			<img src="BOM.png" alt="image unavaliable">
+			<p>
+				Thankfully all the components are currently in stock and avaliable through <a href="https://www.pcbtrain.co.uk/">this site.</a>
+			</p>
+			<img src="part list 3.png">
+			<div class="comment">
+				<p class="date">
+					4/2/2021	9:33PM
+				</p>
+				<p>
+					I should be able to get the PCBs with the new design ordered and on their way over the weekend. These could take a while to arrive, so I will start researching and writing the software for the system so that I get a head start on this.
+				</p>
+				<p>
+					I will also need to do some research into TVC mounts themselves and how they are made to be able to design and print my own. This should be much easier to manage as I have access to a 3D printer rather than needing to send the files off to be printed.
+				</p>
+				<p>
+					Another thing I need to look into is how to power the servos I plan to use and whether I will need some kind of voltage stepper; while I already have some of these from when I got some components in to try some of it out, they might be too small to use.
+				</p>
+			</div>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>System Overview Concept Stage</h2>
+			</p>
+			<p class="date">
+				4/3/2021	10:39PM
+			</p>
+			<p>
+				<span>Below is the start of the design stage for the control system for the TVC mount. I have gone over the main points that I will need to address during construciton of the program and considered solutions to these problems.</span>
+			</p>
+			<p>
+			    <span>Below is a breif overview of each of the problems that I will need to tackle and the physics of how this system works.</span>
+			</p>
+			<p>
+			    <img src="page 1.png">
+			</p>
+			<p>
+			    <span>Below I consider the effect of the force from the propulsion on the rotation of the rocket.</span>
+			</p>
+			<p>
+			    <img src="page 2.png">
+			</p>
+			<p>
+			    <span>Here, I consider how to calculate the moments of inertia which are needed in order to calculate the effect of the torque from the propolsion on the rotation of the rocket.</span>
+			</p>
+			<p>
+			    <img src="page 3.png">
+			</p>
+			<p>
+			    <span>Finally, I considered how the propulsion would need to be angled and moved to correct the rotation knowing how much force is required. To do this, a correction speed is needed to determine how quickly the mount should try to correct any rotation.</span>
+			</p>
+			<p>
+			    <span>It should also take into account any deviation from vertical and correct this also.</span>
+			</p>
+			<p>
+	    		<img src="page 4.png">
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>I2C communication</h2>
+			</p>
+			<p class="date">
+				11/3/2021	1:12PM
+			</p>
+			<p>
+				<h3>Using the I2C interface</h3>
+			</p>
+			<p>
+				<span style="color:#779977">#include</span> &lt;<span style="color:#DD6666">Wire</span>.h&gt; ; &nbsp; <span style="color:#777777">//library for Arduino I2C</span>
+				<br /><br />
+				<span style="color:#44AAAA">void</span> <span style="color:#779977">setup</span>(){<br />
+				<span style="color:#DD6666;padding-left:1em">Wire</span>.<span style="color:#DD6666">begin</span>(); &nbsp;<span style="color:#777777">//initialise the I2C interface</span>
+				<br />
+				}
+			</p>
+			<p>
+				<span style="color:#777777">//To receive data from address "addr" and from memory location "memLoc":</span>
+				<br /><br />
+				<span style="color:#DD6666">Wire</span>.<span style="color:#DD6666">beginTransmission</span>(addr);
+				<br />
+				<span style="color:#DD6666">Wire</span>.<span style="color:#DD6666">write</span>(memLoc);
+				<br />
+				<span style="color:#DD6666">Wire</span>.<span style="color:#DD6666">endTransmission</span>();
+				<br />
+				<span style="color:#777777">//sets the pointer to memLoc</span>
+				<br />
+				<span style="color:#DD6666">Wire</span>.<span style="color:#DD6666">requestFrom</span>(addr, n); &nbsp; <span style="color:#777777">//where n is the number of bytes to read back</span>
+				<br />
+				<span style="color:#779977">while</span>(<span style="color:#DD6666">Wire</span>.<span style="color:#DD6666">avaliable</span>()){
+				<br />
+				<span style="color:#44AAAA;padding-left:1em">char</span> n = <span style="color:#DD6666">Wire</span>.<span style="color:#DD6666">read</span>();
+				<br />
+				<span style="color:#777777;padding-left:1em">//append c to a string to get data</span>
+				<br />}
+			</p>
+			<br />
+			<p>
+				For the <a href="https://product.tdk.com/info/en/documents/catalog_datasheet/imu/DS-000189-ICM-20948-v1.3.pdf">ICM-20948</a>:
+				<br />
+			</p>
+			<ul>
+				<li>Address = b1101000 where the last bit is determined by AD0</li>
+				<li>This is 7 bits long and the final 8th bit is r/w̄</li>
+			</ul>
+			<br />
+			<p>
+				[3]p.30 for r/w sequences
+				<br />
+				[3]p.32 for register addresses
+			</p>
+			<br />
+			<p>
+				WHO_AM_I register sanity check:
+			</p>
+			<ul>
+				<li>Address: 0x00</li>
+				<li>Value: 0xEA</li>
+			</ul>
+			<br />
+			<p>
+				Useful data:
+				<span style="padding-left:1em">0x2D to 0x38</span>
+				<br />
+				A total of 12 bytes
+				<br />
+				Each value has format: higher, lower and must be concatenated to get the complete value
+			</p>
+			<br />
+			<p>
+				6 Buffers
+			</p>
+			<ul>
+				<li>Accelerometer:
+					<ul>
+						<li>x</li>
+						<li>y</li>
+						<li>z</li>
+					</ul>
+				</li>
+				<li>Gyroscope:
+					<ul>
+						<li>x</li>
+						<li>y</li>
+						<li>z</li>
+					</ul>
+				</li>
+			</ul>
+			To get all the data from these 12 buffers; send 0x2D and then receive 12 bytes
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Testing the new circuit</h2>
+			</p>
+			<p class="date">
+				16/3/2021	10:38PM
+			</p>
+			<p>
+				<span>The circuit boards have arrived! With the boards here, I can start to work on the code to interact with them and control the servos.</span><br />
+				<img src="circuits in bag.png">
+				<br /><br />
+				<img src="circuit.png">
+			</p>
+			<p>
+				<span>I plugged the board into the breadboard and connected power; thankfully, it didn't fry it and the pins fit into the breadboard better than the arduino did.</span><br />
+				<img src="in board.png">
+				<br /><br />
+				<span>With power connected, all I needed now was to connect the data and clock pins between the board and the Arduino. At first I used cut off legs from compnents as I had done with the power; however, the longer distance meant that I would need something longer. As such, I used a thicker wire with a solid core to prevent it fraying while pushing it into the breadboard.</span>
+				<br />
+				<span>I used the below tools to cut and strip the cable to the correct length</span>
+				<br />
+				<img src="tools.png">
+				<br />
+				<span>Below is the wire I used; a solid core, 20-22 gauge wire.</span>
+				<br />
+				<img src="wire.png">
+			</p>
+			<p>
+				<span>Next, I measured the supply from the Arduino to ensure it was within the range I expected.</span>
+				<br />
+				<img src="3V3.png">
+				<br />
+				<span>The measurement should show 3.3V, so the 3.28V is well within the expected range.</span>
+			</p>
+			<p>
+				<span>After this, I checked the supply voltage on the board after the voltage divider to ensure that it could power the board</span>
+				<br />
+				<img src="1V8.png">
+				<br />
+				<span>This read back at 1.47V which is too far below the miniumum 1.71V needed to run the IC</span>
+				<br />
+				<span>To fix this, I hooked the supply voltage of the divider up to the 5V rail on the Arduino (which read closer to 4.3V) rather than to the 3.3V rail (which read 3.28V as shown further up) increasing the voltage out of the voltage divider. The user of a potentiometer on the board would have made this easier to fix.</span>
+				<br />
+		        <span>This brought the voltage on the board upto 1.53V which was capable of powering the board, though I will need to be concious of power draw as this is still quite low.</span>
+		        <br />
+				<img src="cleannn.png">
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Reading the first register</h2>
+			</p>
+			<p class="date">
+				16/3/2021	10:49PM
+			</p>
+			<span>With the circuits up and running in a breadboard, I used the code I wrote to receive data from the circuit through I2C.</span><br />
+			<img src="reading WHO_AM_I.png"><br />
+			<span>This read back the correct value of 0xEA from the "WHO_AM_I" register at location 0h00.</span>
+			<div class="comment">
+				<p class="date">
+					17/3/2021	12:32PM
+				</p>
+				<p>
+					I have written some more code to read data from the registers containing the gyroscope and accelerometer data. However, the power supplied to the chip seems to be not enough to activate the sensors but is enough to allow reading of the static registers.
+				</p>
+				<p>
+					To solve this, I can use an external power supply, though this limits portibility. It would be better to figure out how to get the 5V pin to output more than the 4.3V.
+				</p>
+			</div>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Figuring out the issue</h2>
+			</p>
+			<p class="date">
+				18/3/2021	4:40PM
+			</p>
+			<p>Having written the code that should be capable of reading the data from the IC, it has been unable to get the data it should have. However, the responses from the IC suggest that it is functioning correctly in terms of communication.</p>
+			<p>
+	    		<img src="no IMU data.png">
+			</p>
+			<p>
+				I have concluded that the reason for the sensors in the IC not functioning correctly to fill the registers must be the result of the higher voltage data lines from the Arduino causing the voltage supply to the IC to increase and fluctuate.
+			</p>
+			<p>
+				To solve this, I plan to use the transistors I bought to control the servos to bridge between the two voltages; this will (24/3/2021: will NOT require) also require the use of diodes to specify the direction of communication.
+			</p>
+			<div class="comment">
+				<p class="date">
+					22/4/2021	12:23PM
+				</p>
+				<p>
+					I have now discovered that it is likely that this version was functionaly correctly and I just needed to set the sleep bit to off to enable the IC.
+				</p>
+			</div>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Voltage level shifter</h2>
+			</p>
+			<p class="date">
+				11/4/2021	9:47PM
+			</p>
+			<p>
+				Over the last week, I have been researching, designing and making a voltage level shifter which should be able to bridge between the IC and Arduino while ensuring that the voltages of both are maintained.
+			</p>
+			<p>
+				<img src="transistors.png">
+			</p>
+			<p>
+				I started with a naive solution (above) in the form of four transistors that each tried to give their respective I2C device the required voltage; this resulted in a feedback loop which was unable to function. After some research in to how commertially avaliable versions worked, I came across a design which involed two inverters (not gates: the triangles with circles at the points) for each direction (shown below)
+			</p>
+			<p>
+				<img src="not gates.png"><span>[6]</span>
+			</p>
+			<p>
+				Using this, I made a single side of the voltage shifter as a test to ensure I could get it working. I made use of an osciloscope to allow checking of changing voltages.
+			</p>
+			<p>
+				<img src="trying the square.png">
+			</p>
+			<p>
+				The above shows the Arduino connected to one of these bi-directional level shifters. I arranged it as a square to make it easier to see the difference between the directions (left goes to 5V and right goes to 3.3V in this case) and the voltage each transistor is running at (top at 5V and bottom at 3.3V). The 3.3V at the bottom is used as the Arduino has a 3.3V output; this will need to be changed to 1.8V for the IC
+			</p>
+			<p>
+				<img src="10k not 1k.png">
+			</p>
+			<p>
+				The above shows the waveform output from one side of the voltage shifter; the top of the waveform correctly reaches 5V but the bottom of the waveform doesn't return to 0V.
+			</p>
+			<p>
+				<img class="half-width" src="1k.png">
+				<img class="half-width" src="10k.png">
+			</p>
+			<p>
+				I later discovered the cause of this to be the differnce between a 1kOhm resistor and a 10kOhm resistor which have almost identical coloured identifying stripes on them. 10k is brown, black, orange while 1k is brown, black, red. With this fixed, it worked correctly and I moved on to clean up the circuit, draw up the circuit and replicate it for the other line needed for I2C.
+			</p>
+			<p>
+				<img src="corrected 1.png">
+			</p>
+			<p>
+				<img src="corrected 2.png">
+			</p>
+			<p>
+				Checking that the fix has actually worked; both the 3.3V side and the 5V side show returning to 0V and reaching near to the correct voltage, 3V in the case of the 3.3V side and 4V in the case of the 5V side.
+			</p>
+			<p>
+				<img src="corrected diagram.png">
+			</p>
+			<p>
+				Above shows the diagram drawn up in KiCAD.<br />
+				Below shows the circuit cleaned up and duplicated.
+			</p>
+			<p>
+				<img src="duplicated.png">
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Changing to MOSFETs</h2>
+			</p>
+			<p class="date">
+				18/4/2021	2:43PM
+			</p>
+			<p>
+			    I have continued to try get the BJT transistors to function as a set of four inverts and have been unable to get them to function adequately. THey have funcitoned correcly when opperated manually, but have too high resistances and capacitances to be switched by the I2C devices.
+			</p>
+			<p>
+				To resolve this, I have found two more sources that suggest using MOSFETs in this situation; I originally found a document from a credible source that suggested this and I followed other sources that suggested the route that I took (which only works correctly for uni-directional signals, e.g. a servo or motor).
+			</p>
+			<span>List of MOSFET sources</span>
+			<ul>
+			    <li><a href="http://cdn.sparkfun.com/tutorialimages/BD-LogicLevelConverter/an97055.pdf"><span style="color: blue">[5]</span></a></li>
+			    <li><a href="https://www.nxp.com/docs/en/application-note/AN10441.pdf"><span style="color: blue">[7]</span></a></li>
+			    <li><a href="https://hackaday.com/2016/12/05/taking-it-to-another-level-making-3-3v-and-5v-logic-communicate-with-level-shifters/"><span style="color: blue">[8]</span></a></li>
+			</ul>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>MOSFETs installed</h2>
+			</p>
+			<p class="date">
+				21/4/2021	12:08AM
+			</p>
+			<p>
+				<span>MOSFETs have arrived along with some pins to plug another Arduino into the breadboard.</span>
+			</p>
+			<p>
+				<img src="more components.png">
+			</p>
+			<p>
+				<span>As expected, using the MOSFETs in the way described in the sources listed in the previous post proved to work first time. Below is the new circuit.</span>
+			</p>
+			<p>
+				<img src="mosfets installed.png">
+			</p>
+			<p>
+				<span>The bellow image shows the serial return from the Arduino; it shows a successful serial connection from the Arduino, then a successful I2C connection from the Arduino to the IC, then a successful reading of the WHO_AM_I register as hex EA. However, the readings from the actual sensor parts of the IC return 0's.</span>
+			</p>
+			<p>
+				<img src="no IMU data still.png">
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>...</h2>
+			</p>
+			<p class="date">
+				22/4/2021	9:46AM
+			</p>
+			<p>
+			    <span>From the ICs datasheet...</span>
+			</p>
+			<p>
+				<img src="sleep mode.png">
+			</p>
+			<p>
+			    <span>None of the sensors are switched on at powerup</span>
+			</p>
+			<p>
+			    <img src="sleep mode register.png">
+			</p>
+			<p>
+			    <span>The sleep bit needs to be cleared before the sensors switch on.</span>
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Not quite as simple as I thought</h2>
+			</p>
+			<p class="date">
+				27/4/2021	10:11AM
+			</p>
+			<p>
+				<span>When the device is switched out of sleep mode, much of the returned data becomes ones. This is probably the result of the I2C communication being give a small slice of the processing time while the data from the sensors is collected. The only issue with this is that the registers that should contain the data from the sensors remain empty; this data might be being sent somewhere else (such as the FIFO memory, though this also appears empty).</span>
+			</p>
+			<p>
+				<span>This is, however, a vast improvement over the previous version as I can now read and write to registers and observe the changes this makes. I have been exploring examples that others have made to use this IC, though I must be missing something as I can't see the difference between what they are doing and what I'm doing. The only thing I haven't checked is whether some of the interupts only act internally and are needed to move data around in the IC.</span>
+			</p>
+			<p>
+				<span>Even when the device only returns zeros form all other registers, the WHO_AM_I register continues to return the correct value, which suggests that the device is still functioning correctly.</span>
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Digital Oscilloscope</h2>
+			</p>
+			<p class="date">
+				28/4/2021	2:31PM
+			</p>
+			<p>
+				<span>Currently looking into getting access to a digital / storing oscilloscope to get a better look at the I2C messages being sent. This will let me double check that the messages being sent are correct and also take a look at the signal integrity. The oscilloscope I have been using can only view repeating signals which makes it hard to use in a digital context.</span>
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>New inspirations for software</h2>
+			</p>
+			<p class="date">
+				6/5/2021	10:05AM
+			</p>
+			<p>
+				<span>I found a thread on <a href="https://github.com/sparkfun/SparkFun_ICM-20948_ArduinoLibrary/issues/7">an official open source project</a> for a breakout board of the IC I am using. One of the posts gives a commented run through of most of the possible settings you might want to adjust on the IC.</span>
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Eliminating variables</h2>
+			</p>
+			<p class="date">
+				10/5/2021	11:46PM
+			</p>
+			<p>
+				<span>Having tried a couple of different example softwares for the IC, I am now tring to eleminate and test all other possible failure points and test each one indindvidually.</span>
+			</p>
+			<p>
+			    <span>So far, this has consisted of:</span>
+			</p>
+			<ul>
+				<li>
+			        Trying different software:
+			        <ul>
+			            <li>
+			            	<a href="https://github.com/sparkfun/SparkFun_ICM-20948_ArduinoLibrary">SparkFun library and examples for ICM-20984</a>
+			            </li>
+			            <li>
+			                <a href="https://github.com/sparkfun/SparkFun_ICM-20948_ArduinoLibrary/issues/7#issuecomment-772568779">Comment on the SparkFun page</a>
+			            </li>
+			        </ul>
+			    </li>
+			    <li>
+			        <span>Trying different test boards:</span>
+			        <ul>
+			            <li>Arduino Nano<br /><img src="Arduino nano.png" style="width:425px"></li>
+			            <li>Arduino Every<br /><img src="Arduino Every.png" style="width:425px"></li>
+			        </ul>
+			        <span>The PCB works with neither of these.</span>
+			    </li>
+			    <li>
+			    	<span>I have ordered a premade version of the PCB I designed to test if this is the issue also. This should arrive in the next week. While I find it very unlikely that this is the problem, it is beginning to be one of the few remaining untested points.</span>
+			    </li>
+			</ul>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Pre-made PCB</h2>
+			</p>
+			<p class="date">
+				12/5/2021	1:00AM
+			</p>
+			<p>
+			    <img src="Every with pre-made.png" alt="img of new PCB">
+			</p>
+			<p>
+			    <span>I received the pre-made PCB from Adafruit and have modified their example, which I had been trying to use with by PCB, and managed to get it to return all the necessary data. The below code prints the data to the serial bus back to the computer.</span>
+			</p>
+			<p>
+			    <img src="data to serial.png" alt="image of serial data">
+			</p>
+			<p>
+			    <span>I have also put together a program in Processing (a Java based drawing editor) which takes the serial data from the Arduino and displays a cube with the rotational translations applied.</span>
+			</p>
+			<p>
+			    <img src="cube.png" alt="image of Processing program">
+			</p>
+			<p>
+			    <span>The next steps will be fully implementing the display program to allow me to visualise what the Arduino is sensing and design a sensor filter to get accurate readings.</span>
+			</p>
+			<p>
+			    <span>I migh also consider revisiting my PCB to see if I can find the reason it doesn't work, though I'm not sure I will have time to do this.</span>
+			</p>
+		</div>
+	</body>
+</html>
