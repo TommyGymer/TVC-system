@@ -23,6 +23,9 @@
 			p.date{
 				color: #888888;
 			}
+			a{
+				color: #0000ff;
+			}
 		</style>
 	</head>
 
@@ -850,6 +853,40 @@
 			</p>
 			<p>
 			    <span>I migh also consider revisiting my PCB to see if I can find the reason it doesn't work, though I'm not sure I will have time to do this.</span>
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Using GitHub to store and version code</h2>
+			</p>
+			<p class="date">
+				27/5/2021	10:19PM
+			</p>
+			<p>
+				<span>I have setup a <a href="https://github.com/TommyGymer/TVC-system">GitHub repository</a> that will contain any code that I write and also the libraries I have made use of in the project. This will allow me to access the code from anywhere without needing to worry about different versions or losing any progress.</span>
+			</p>
+			<p>
+				<span>GitHub is widely used in industry both in the open and closed source markets. I am using the public version of the site, though there is also a version designed specifically for enterprises. I will make use of the history of changes and version control to document any changes I make to the code I write and the intent I had with those changes.</span>
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Progress with the data from the IMU</h2>
+			</p>
+			<p class="date">
+				27/5/2021	
+			</p>
+			<p>
+				<span>With the new pre-made PCB, I have been able to sucessfully pull the required data from it and read this data on connected computer. In a previous post, I was able to display a cube that moved randomly using this data. I recently found the issue; I had been interpreting an acceleration directly as a displacement (distance) which had resulted in seemingly random data with a magnitude similar to what I might have expected.</span>
+			</p>
+			<p>
+				<span>With this fixed, I have been able to get the cube to rotate with some resemblance the actual movement of the setup. However, the movement is not smoothed and doesn't correctly slow down yet; the cube continues to spin and move even when the board is still. There is a video of this on the GitHub page that demo's me trying to stabilise the board by hand and shows the drift exprienced by the system. The first 30 seconds or so of the video, the system is calibrating using a simple average acceleration offset while the board is stationary.</span>
 			</p>
 		</div>
 	</body>
