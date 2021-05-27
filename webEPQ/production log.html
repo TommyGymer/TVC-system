@@ -32,13 +32,13 @@
 	<body>
 		<div>
 			<p>
-				<h2>Current cicuit design</h2>
+				<h2>First cicuit design</h2>
 			</p>
 			<p class="date">
-				25/11/2020	5:34PM
+				25/11/2020
 			</p>
 			<p>
-				I am currently using a circuit design software called <a href="https://kicad.org/">KiCad</a> to design the circuit to make use of an <a href="https://www.mouser.co.uk/datasheet/2/389/lsm9ds1-1849526.pdf">IMU</a>&nbsp;that will allow me to collect information about the acceleration,&nbsp;orientation and altitude of the prototype; this will form the basis of the TVC system.
+				I have previously used an open-source circuit design tool called <a href="https://kicad.org/">KiCad</a> to design simple circuits. I made use of this piece of software to design a circuit around an <a href="https://www.mouser.co.uk/datasheet/2/389/lsm9ds1-1849526.pdf">IMU</a> that will collect motion and rotation data. This data can then be processed to determine the state of the system; its acceleration, veloity, orientation, altitude and spin can be found. This will form the basis on which the rest of the TVC system is built, as this data is vital to knowing what needs to be corrected.
 			</p>
 			<p>
 				<img src="initial circuit.png">
@@ -52,10 +52,10 @@
 				<h2>Circuit design issue</h2>
 			</p>
 			<p class="date">
-				26/11/2020	12:11PM
+				26/11/2020
 			</p>
 			<p>
-				I have just checked the availability of the IMU I was planning to use to find that it is no longer available on the <a href="https://www.mouser.co.uk/ProductDetail/STMicroelectronics/LSM9DS1?qs=4b8myOmUP%252Bs%2Fbmi4Ts21DQ%3D%3D">site I was looking at it on</a>.&nbsp; I will either need to find somewhere else that sells it, or find a diffrent product to use.
+				Having designed the circuit using the IMU, it then become <a href="https://www.mouser.co.uk/ProductDetail/STMicroelectronics/LSM9DS1?qs=4b8myOmUP%252Bs%2Fbmi4Ts21DQ%3D%3D">unavaliable</a> requiring that the circuit be redesigned with a new component. I had to find a new component that would fit my use case was avaliable; there are many examples of the components I needed separated into multiple parts, but it would be much simpler to keep them all in the same package.
 			</p>
 		</div>
 
@@ -63,13 +63,13 @@
 
 		<div id="ENTRY-Looking at alternative chips">
 			<p>
-				<h2>Looking at alternative chips</h2>
+				<h2>Reseraching at alternative chips</h2>
 			</p>
 			<p class="date">
-				26/11/2020	12:46PM
+				26/11/2020
 			</p>
 			<p>
-				After a quick search on <a href="https://www.mouser.co.uk/">Mouser</a>, I have found two potential chips:
+				I have done some research into the options on <a href="https://www.mouser.co.uk/">Mouser</a> and have found two potential ICs:
 			</p>
 			<ul>
 				<li>
@@ -80,7 +80,7 @@
 				</li>
 			</ul>
 			<p>
-				<span style="color: #333333; font-size: 13px; text-decoration-color: initial;">I will probably use the latter as it has better functionality and accuracy.</span>
+				<span style="color: #333333; font-size: 13px; text-decoration-color: initial;">The latter has better functionality and accuracy, so should be better for my use case with both being of similar design and thus difficulty to use.</span>
 			</p>
 		</div>
 
@@ -88,13 +88,16 @@
 
 		<div>
 			<p>
-				<h2>New chip</h2>
+				<h2>New IC; second circuit</h2>
 			</p>
 			<p class="date">
-				26/11/2020	1:25PM
+				26/11/2020
 			</p>
 			<p>
-				Current state of new IC: most connections have been labelled or removed and power has been mostly set out.
+				I have redesigned the circuit to make use of this new IC.
+			</p>
+			<p>
+				<span>Next, I will need to consider the comminucation with the IC and also the power that needs to be supplied to the IC.</span>
 			</p>
 			<p>
 				<img src="second circuit.png">
@@ -105,13 +108,13 @@
 
 		<div>
 			<p>
-				<h2>New chip: finished!</h2>
+				<h2>New IC: completed design</h2>
 			</p>
 			<p class="date">
-				26/11/2020	1:41PM
+				26/11/2020
 			</p>
 			<p>
-				The circuit has each of the inputs I will need to use labelled and a 5V input (from the Arduino I plan to use) divided to produce the 1.8V supply for the IC.
+				Each of the comminucation pins has been connected to a label to allow connection to a set of pins for connection to an Arduino. The 1.8V voltage supply has been sourced using a voltage divider from the Arduino's 5V supply. Potential dividers are documented in the report section fo this project.
 			</p>
 			<p>
 	    		<img src="second circuit 2.png">
@@ -122,31 +125,31 @@
 
 		<div>
 			<p>
-				<h2>Components received and assembled</h2>
+				<h2>First components received and assembled</h2>
 			</p>
 			<p class="date">
-				14/12/2020	3:40PM
+				14/12/2020
 			</p>
 			<p>
-				I have received and assembled the components from the last few posts:
+				I have received and assembled the components from the last few entires:
 			</p>
 			<p>
 				<img src="spider 1.png">
 			</p>
 			<p>
-				The above shows the measurement unit connected to the Arduino through I²C (a data interface protocol) which allowed me to read data from the measurement unit.&nbsp; I used the data sheet mentioned in the "<a href="#ENTRY-Looking at alternative chips">Looking at alternative chips</a>" post to allow me to do this.
+				The above shows the IMU connected to the Arduino through I2C (documented in the report section) which allows the reading of data from the IMU. I used the <a href="https://www.mouser.co.uk/datasheet/2/389/dm00603953-1862087.pdf">data sheet</a> mentioned in the "<a href="#ENTRY-Looking at alternative chips">Looking at alternative chips</a>" entry to allow me to do this.
 			</p>
 			<p>
-				However, the measurement unit was much, much smaller than expected (2mm by 2mm small) making it very fragile...
+				However, the measurement unit was smaller than expected (2mm by 2mm small) making it very fragile...
 			</p>
 			<p>
 				<img src="spider 2.png">
 			</p>
 			<p>
-				This made it very hard to solder to and is the main reason that one of the solder pads fell off. As a result, I have decided to design my own PCB and get it printed (probably by <a href="https://jlcpcb.com/">JLCPCB.com</a> or simillar service.
+				This made it very hard to solder to with one of the solder pads falling off and the IC no longer usable. As a result, I have decided to design a PCB and have it printed (by a service such as <a href="https://jlcpcb.com/">JLCPCB.com</a>
 			</p>
 			<p>
-				With the above setup, I was able to figure out and test how to get data from the chip using the I2C protocol showing that the concept worked and that I would be able to use an Arduino to get the data that I would need.
+				The above setup was able to read the data that would be needed back through the Arduino to a computer using I2C. This demonstrated the capabilities of the IC IMUs to collect the necessary data. However, it didn't last long enough to be able to develop a program to interpret this data.
 			</p>
 		</div>
 
@@ -157,10 +160,10 @@
 				<h2>Continuing to design circuit</h2>
 			</p>
 			<p class="date">
-				14/12/2020	9:38PM
+				14/12/2020
 			</p>
 			<p>
-				After the issue of the very, very, very small components and the decision to swap to having PCBs made, I have picked out two ICs (an accelerometer and a gyroscope) that are stocked by <a href="https://jlcpcb.com/">the PCB producer</a>:
+				After the issues with hand soldering micro package ICs and deciding to move to a PCB, I found two ICs (independent accelerometer and gyroscope) that are stocked by <a href="https://jlcpcb.com/">the PCB producer</a>:
 			</p>
 			<p>
 				Accelerometer: <a href="https://datasheet.lcsc.com/szlcsc/1810010329_STMicroelectronics-LIS2DH12TR_C110926.pdf">LIS2DH12TR</a>
@@ -170,17 +173,17 @@
 	    		<img src="third circuit.png">
 			</p>
 		    <p>
-		    	The above image shows the two ICs with all the necessary connections labelled. It also includes some things that I learnt while experimenting with the previous components, eg. the smaller part at the bottom with two labels, two resistors and a power source is needed for the I²C communication protocol to function.
+		    	The above figure shows the circuit redesigned to work with these new components with the communication pins labeled. This version also features the pull-up resistors on the I2C communication lines as required by the protocol and the same potential divider as before. Each component has a number of capacitors at its Vcc pin to ensure that the voltage supply is smoothed; these have been added according to the datasheet of each component.
 			</p>
 			<p>
-				The next step will be drawing this out into something that can be printed rather than just a block diagram.&nbsp; I will also need to consider how I will connect this board to the Arduino; I will probably put pins on the bottom of the breakout board and plug it into the breadboard with the Arduino.
+				This will need to be drawn into a PCB design with the wires routed around each other rather than simply passing over each other (as in the block diagram shown). I will also need to consider the connection method with the Arduino; simple breadboard pins with through hole connections would be the simplest method and would allow wires to be soldered on if necessary. This would also allow the PCB to be plughged directly into a breadboard.
 			</p>
 			<div class="comment">
 				<p class="date">
-					16/12/2020	10:52AM
+					16/12/2020
 				</p>
 			    <p>
-			    	List of other components from <a href="https://jlcpcb.com/">the PCB producer</a>:
+			    	List of other components from <a href="https://jlcpcb.com/">the PCB producer</a> used in this new design:
 			    </p>
 			    <ul>
 				    <li>
@@ -197,7 +200,7 @@
 				    </li>
 				</ul>
 				<p>
-				   	Next step will be putting this information into Gerber format (an industry standard for circuit board printing).
+				   	The next step will be putting this information into Gerber format (an industry standard for PCB printing and manufacture).
 				</p>
 			</div>
 		</div>
@@ -206,13 +209,13 @@
 
 		<div>
 			<p>
-				<h2>PCB complete</h2>
+				<h2>PCB design completed</h2>
 			</p>
 			<p class="date">
-				19/12/2020	11:33PM
+				19/12/2020
 			</p>
 			<p>
-				I have finished designing the PCB for the two ICs and have included 3D models from the manufactues of the parts to get a better idea of what the PCBs will look like.  The sets of pins will probably end up under the board rather than on top of it.
+				I have finished designing the two IC PCB and have rendered what these may look like once manufactured. The Gerber and BOM (bill of materials) will need to be sent to a PCB manufacture to be made. The pins can to be moved to other side of the board, though this isn't necessary.
 			</p>
 			<p>
 				<img src="render.png">
@@ -221,7 +224,7 @@
 	    		<img src="layout.png">
 			</p>
 			<p>
-			    I also cleaned up the circuit diagram into blocks to make it more readable.
+				The block diagram of the circuit has been divided into its sepate parts by their funciton to improve ease of reading. This will also help when placing the components onto the PCB in that stage of design as the components which need to be close to each other are already in reasonable place relative to each other.
 			</p>
 			<p>
 	    		<img src="block.png">
@@ -235,10 +238,10 @@
 				<h2>Unable to get one of the components</h2>
 			</p>
 			<p class="date">
-				18/1/2021	1:57PM
+				18/1/2021
 			</p>
 			<p>
-	    		The PCB manufacturer I was looking at doesn't currently have one of the parts that I need for the board so I will have to look else where for the same components or redesign using one of the components that they have avaliable.
+				One of the components in the current design has gone out of stock on the PCB manufacture's website and will not be boack in stock for a number of months. As such, it will need to be replaced with a different component or a different manufacture found. It would be prefereable to redesign as the components in this design are not optimal as the main ICs could be condensed to a single IC, which would vastly simplify the design.
 			</p>
 			<p>
 	    		<img src="part list 1.png">
@@ -249,26 +252,26 @@
 
 		<div>
 			<p>
-				<h2>Need to change to a different component</h2>
+				<h2>Changing the IC(s)</h2>
 			</p>
 			<p class="date">
-				26/1/2021	3:29PM
+				26/1/2021
 			</p>
 			<p>
-	    		Currently looking at another website (<a href="https://pcbtrain.co.uk/">PCBTrain</a>) as they provide a service in which they source components beyond those in a given list.
+				With the lack of options and stock on <a href="https://jlcpcb.com/">jlcpcb.com</a>, I am looking at finding another, local PCB manufacture. After seraching around, I found <a href="https://pcbtrain.co.uk/">PCBTrain</a> who provide a service which allows the use of any of the components on <a href="https://www.mouser.co.uk/">Mouser</a>, which substantially increases the number of components that can be picked from.
 			</p>
 			<p>
 				<img src="part list 2.png">
 			</p>
 			<p>
-			    However, the component I was looking at is still not avaliable, it seems likely that the component is in shortage and I will need to find an alternative. Though with the large number of avaliable components on the new site, I should be easily able to find a suitable one.
+			    However, the component I was looking at is still not avaliable, it seems likely that the component is in shortage and I will need to find an alternative. Though with the large number of avaliable components on the new site, I should be able to find a suitable one.
 			</p>
 			<div class="comment">
 				<p class="date">
 					28/1/2021	8:10PM
 				</p>
 				<p>
-					I just came across a new component that seems to fit all my current needs:
+					I came across a new IC that seems to fit all the requirements:
 					<ul>
 						<li>
 							Gyroscope
@@ -300,19 +303,19 @@
 
 		<div>
 			<p>
-				<h2>New cicuit design</h2>
+				<h2>Third circuit design</h2>
 			</p>
 			<p class="date">
-				28/1/2021	10:59PM
+				28/1/2021
 			</p>
 			<p>
-	    		I have redesigned the circuit to take advantage of the new IC that I came across. The circuit is much smaller as all the functionality I need is within the single chip.
+				The circuit has been redesigned for the new IC; the pins have been connected to the required outputs on the PCB and the voltage supply smoothed according to <a href="https://www.st.com/resource/en/datasheet/lsm6ds33.pdf">the datasheet</a>. The new IC is also smaller than a single one of the previous ICs, so the PCB has been vastly shrunk.
 			</p>
 			<p>
 	    		<img src="final circuit.png">
 	        </p>
 	        <p>
-	        	I used the <a href="https://product.tdk.com/info/en/documents/catalog_datasheet/imu/DS-000189-ICM-20948-v1.3.pdf">datasheet</a> to figure out what I needed to wire the new IC.
+	        	I used the <a href="https://product.tdk.com/info/en/documents/catalog_datasheet/imu/DS-000189-ICM-20948-v1.3.pdf">datasheet</a> to figure out which pins needed to be connected to the communication off of the PCB.
 	        </p>
 		</div>
 
@@ -323,31 +326,31 @@
 				<h2>PCB design complete</h2>
 			</p>
 			<p class="date">
-				28/1/2021	11:45PM
+				28/1/2021
 			</p>
 			<p>
-				I have finished the first stage (symbol diagram) of the new circuit and uploaded the BOM (bill of materials) to the site I plan to use to check that the components are avaliable.
+				I have finished the first stage (block diagram) of the new circuit and uploaded the BOM (bill of materials) to the site I plan to use to check that the components are avaliable.
 			</p>
 			<p>
 				I modified the python script that generates the bill of matrials so it could output the format that the website wants. Below shows the table of materials before export.
 			</p>
 			<img src="BOM.png" alt="image unavaliable">
 			<p>
-				Thankfully all the components are currently in stock and avaliable through <a href="https://www.pcbtrain.co.uk/">this site.</a>
+				All the components are currently in stock and avaliable through <a href="https://www.pcbtrain.co.uk/">this site.</a>
 			</p>
 			<img src="part list 3.png">
 			<div class="comment">
 				<p class="date">
-					4/2/2021	9:33PM
+					4/2/2021
 				</p>
 				<p>
-					I should be able to get the PCBs with the new design ordered and on their way over the weekend. These could take a while to arrive, so I will start researching and writing the software for the system so that I get a head start on this.
+					I should be able to get the PCBs with the new design ordered and on their way in the next few days. These will take a while to arrive, so I will start researching and writing the software for the system so that I get a head start on this.
 				</p>
 				<p>
-					I will also need to do some research into TVC mounts themselves and how they are made to be able to design and print my own. This should be much easier to manage as I have access to a 3D printer rather than needing to send the files off to be printed.
+					I will also need to do some research into TVC mounts themselves and how they are made to be able to design and print my own. This should be much easier to manage as I have access to a 3D printer, rather than needing to send the files off to be printed.
 				</p>
 				<p>
-					Another thing I need to look into is how to power the servos I plan to use and whether I will need some kind of voltage stepper; while I already have some of these from when I got some components in to try some of it out, they might be too small to use.
+					Another thing I need to look into is how to power the servos I plan to use and whether I will need some kind of voltage stepper; while I already have some that might serve the purpose of a voltage stepper, they might be too small to use.
 				</p>
 			</div>
 		</div>
@@ -359,7 +362,7 @@
 				<h2>System Overview Concept Stage</h2>
 			</p>
 			<p class="date">
-				4/3/2021	10:39PM
+				4/3/2021
 			</p>
 			<p>
 				<span>Below is the start of the design stage for the control system for the TVC mount. I have gone over the main points that I will need to address during construciton of the program and considered solutions to these problems.</span>
