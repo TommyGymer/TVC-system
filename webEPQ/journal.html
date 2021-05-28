@@ -35,7 +35,7 @@
 				<h2>First cicuit design</h2>
 			</p>
 			<p class="date">
-				25/11/2020
+				25/11/2020	5:34PM
 			</p>
 			<p>
 				I have previously used an open-source circuit design tool called <a href="https://kicad.org/">KiCad</a> to design simple circuits. I made use of this piece of software to design a circuit around an <a href="https://www.mouser.co.uk/datasheet/2/389/lsm9ds1-1849526.pdf">IMU</a> that will collect motion and rotation data. This data can then be processed to determine the state of the system; its acceleration, veloity, orientation, altitude and spin can be found. This will form the basis on which the rest of the TVC system is built, as this data is vital to knowing what needs to be corrected.
@@ -52,7 +52,7 @@
 				<h2>Circuit design issue</h2>
 			</p>
 			<p class="date">
-				26/11/2020
+				26/11/2020	12:11PM
 			</p>
 			<p>
 				Having designed the circuit using the IMU, it then become <a href="https://www.mouser.co.uk/ProductDetail/STMicroelectronics/LSM9DS1?qs=4b8myOmUP%252Bs%2Fbmi4Ts21DQ%3D%3D">unavaliable</a> requiring that the circuit be redesigned with a new component. I had to find a new component that would fit my use case was avaliable; there are many examples of the components I needed separated into multiple parts, but it would be much simpler to keep them all in the same package.
@@ -66,7 +66,7 @@
 				<h2>Researching alternative chips</h2>
 			</p>
 			<p class="date">
-				26/11/2020
+				26/11/2020	12:46PM
 			</p>
 			<p>
 				I have done some research into the options on <a href="https://www.mouser.co.uk/">Mouser</a> and have found two potential ICs:
@@ -91,7 +91,7 @@
 				<h2>New IC; second circuit</h2>
 			</p>
 			<p class="date">
-				26/11/2020
+				26/11/2020	1:25PM
 			</p>
 			<p>
 				I have redesigned the circuit to make use of this new IC.
@@ -111,7 +111,7 @@
 				<h2>New IC: completed design</h2>
 			</p>
 			<p class="date">
-				26/11/2020
+				26/11/2020	1:41PM
 			</p>
 			<p>
 				Each of the comminucation pins has been connected to a label to allow connection to a set of pins for connection to an Arduino. The 1.8V voltage supply has been sourced using a voltage divider from the Arduino's 5V supply. Potential dividers are documented in the report section fo this project.
@@ -128,7 +128,7 @@
 				<h2>First components received and assembled</h2>
 			</p>
 			<p class="date">
-				14/12/2020
+				14/12/2020	3:40PM
 			</p>
 			<p>
 				I have received and assembled the components from the last few entires:
@@ -160,7 +160,7 @@
 				<h2>Continuing to design circuit</h2>
 			</p>
 			<p class="date">
-				14/12/2020
+				14/12/2020	9:38PM
 			</p>
 			<p>
 				After the issues with hand soldering micro package ICs and deciding to move to a PCB, I found two ICs (independent accelerometer and gyroscope) that are stocked by <a href="https://jlcpcb.com/">the PCB producer</a>:
@@ -180,7 +180,7 @@
 			</p>
 			<div class="comment">
 				<p class="date">
-					16/12/2020
+					16/12/2020	10:52AM
 				</p>
 			    <p>
 			    	List of other components from <a href="https://jlcpcb.com/">the PCB producer</a> used in this new design:
@@ -212,7 +212,7 @@
 				<h2>PCB design completed</h2>
 			</p>
 			<p class="date">
-				19/12/2020
+				19/12/2020	11:33PM
 			</p>
 			<p>
 				I have finished designing the two IC PCB and have rendered what these may look like once manufactured. The Gerber and BOM (bill of materials) will need to be sent to a PCB manufacture to be made. The pins can to be moved to other side of the board, though this isn't necessary.
@@ -238,7 +238,7 @@
 				<h2>Unable to get one of the components</h2>
 			</p>
 			<p class="date">
-				18/1/2021
+				18/1/2021	1:57PM
 			</p>
 			<p>
 				One of the components in the current design has gone out of stock on the PCB manufacture's website and will not be boack in stock for a number of months. As such, it will need to be replaced with a different component or a different manufacture found. It would be prefereable to redesign as the components in this design are not optimal as the main ICs could be condensed to a single IC, which would vastly simplify the design.
@@ -255,7 +255,7 @@
 				<h2>Changing the IC(s)</h2>
 			</p>
 			<p class="date">
-				26/1/2021
+				26/1/2021	3:29PM
 			</p>
 			<p>
 				With the lack of options and stock on <a href="https://jlcpcb.com/">jlcpcb.com</a>, I am looking at finding another, local PCB manufacture. After seraching around, I found <a href="https://pcbtrain.co.uk/">PCBTrain</a> who provide a service which allows the use of any of the components on <a href="https://www.mouser.co.uk/">Mouser</a>, which substantially increases the number of components that can be picked from.
@@ -306,7 +306,7 @@
 				<h2>Third circuit design</h2>
 			</p>
 			<p class="date">
-				28/1/2021
+				28/1/2021	10:59PM
 			</p>
 			<p>
 				The circuit has been redesigned for the new IC; the pins have been connected to the required outputs on the PCB and the voltage supply smoothed according to <a href="https://www.st.com/resource/en/datasheet/lsm6ds33.pdf">the datasheet</a>. The new IC is also smaller than a single one of the previous ICs, so the PCB has been vastly shrunk.
@@ -326,7 +326,7 @@
 				<h2>PCB design complete</h2>
 			</p>
 			<p class="date">
-				28/1/2021
+				28/1/2021	11:45PM
 			</p>
 			<p>
 				I have finished the first stage (block diagram) of the new circuit and uploaded the BOM (bill of materials) to the site I plan to use to check that the components are avaliable.
@@ -341,7 +341,7 @@
 			<img src="part list 3.png">
 			<div class="comment">
 				<p class="date">
-					4/2/2021
+					4/2/2021	9:33PM
 				</p>
 				<p>
 					I should be able to get the PCBs with the new design ordered and on their way in the next few days. These will take a while to arrive, so I will start researching and writing the software for the system so that I get a head start on this.
@@ -362,7 +362,7 @@
 				<h2>System Overview Concept Stage</h2>
 			</p>
 			<p class="date">
-				4/3/2021
+				4/3/2021	10:39PM
 			</p>
 			<p>
 				<span>Below is the start of the design stage for the control system for the TVC mount. I have gone over the main points that I will need to address during construciton of the program and considered solutions to these problems.</span>
