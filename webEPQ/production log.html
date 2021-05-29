@@ -30,6 +30,160 @@
 	</head>
 
 	<body>
-		
+		<div>
+			<p>
+				<h2>First revision of circuit</h2>
+			</p>
+			<p class="date">
+				25/11/2020
+			</p>
+			<p>
+				Using the open-source circuit design tool "KiCAD", I have designed the block diagram of the circuit which will allow an Arduino to communicate with an IMU.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Issue with the first revision</h2>
+			</p>
+			<p class="date">
+				26/11/2020
+			</p>
+			<p>
+				The IMU used in the first revision design is no longer avaliable from the original supplier and will need to be replaced or found from a different supplier.
+			</p>
+			<p>
+				<h2>Reseraching alternate chips</h2>
+			</p>
+			<p>
+				I have researched a number of alternative options for the IMU and found two suitable ICs that are in resonable stock from the original supplier. These ICs have similar capabilities to the original IC, though are slightly newer designs.
+			</p>
+			<p>
+				<h2>Second revision of circuit</h2>
+			</p>
+			<p>
+				I have made a new revision of the circuit that makes use of one of the new ICs that are currently in stock. My next steps will be considering how the IC will communicate with the Arduino and how to supply power to the IC according to its datasheet
+			</p>
+			<p>
+				<h2>Second revision of circuit completed</h2>
+			</p>
+			<p>
+				I have added the required connections for communication and components for the voltage supply to the IC.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Second revision components arrived</h2>
+			</p>
+			<p class="date">
+				14/12/2020
+			</p>
+			<p>
+				I have received the components from the supplier and constructed the circuit. The IMU connects to the Arduino via I2C and uses the Arduino's regulated voltage supply for power.
+			</p>
+			<p>
+				The IMU is smaller than expected, making it very fragile. This made it very difficult to solder to as there are 12 pins within a 2mm by 2mm area, of which most need to be connected.
+			</p>
+			<p>
+				After managing to connect the IMU to the Arduino and the Arduino then to a computer, I have read back some of the data from the IMU before one of the critical pads fell off the IC.
+			</p>
+			<p>
+				The difficulty in soldering and the lack of any larger components being avaliable has resulted in the decision to design a PCB and have it printed. This will improve the durability of the circuit and ensure that it doesn't come appart.
+			</p>
+			<p>
+				<h2>Third revision of circuit</h2>
+			</p>
+			<p>
+				I have designed a third revision of the circuit using separate ICs for the acceleromter and gyroscope. This has vastly increased the complexity of the PCB as there are a number of communication traces which must be routed around each other.
+			</p>
+			<p>
+				The block diagram of the circuit will need to be turned into a layout that can then be printed. The use of breadboard pins on the PCB will simplify the connecting of the PCB to an Arduino.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Third revision of circuit completed</h2>
+			</p>
+			<p>
+				19/12/2020
+			</p>
+			<p>
+				This version makes use of independent gyroscope and accelerometers which increases the complexity of the design. I have produced the Gerber file for the layout of the PCB and the BOM for the required components. These will need to be sent to a PCB manufacture to be produced.
+			</p>
+			<p>
+				I have also cleaned up the block diagram of the circuit to make it easier to read and debug later if there are any issues.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Unable to get the components</h2>
+			</p>
+			<p class="date">
+				18/1/2020
+			</p>
+			<p>
+				One of the components required for the third revision of the design is not avaliable from the PCB manufacture I have been looking at. This will require either looking at another manufacure or redesigning for another component. I will redesign to remove the reliance on two independent ICs as this will reduce the complexity of the project in the software stage and also in the the layout of the PCB.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Changing the IC(s)</h2>
+			</p>
+			<p class="date">
+				26/1/2021
+			</p>
+			<p>
+				With the lack of options and stock from the original PCB mnanufacture, I have researched other manufacures, though the shortage appears to be global currently. However, I have found a manufacture which allows the use of any components from a bulk re-saler that has stock of almost all components.
+			</p>
+			<p>
+				The components in the third revision appear to have been superceeded and are no longer avaliable. I have researched other options and designed a fourth revision of the circuit using a new IMU that is the latest in lower power technology and accuracy. This will make it more complicated to use as it is a 1.8V product, but should be more accurate than the alternatives.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Fourth revision of circuit</h2>
+			</p>
+			<p class="date">
+				28/1/2021
+			</p>
+			<p>
+				I have redesigned the circuit to use the new low power IC and used to datasheet to connect the pins that I will need access to. The new IC is slightly smaller than even one of the previous ICs, making the new PCB much smaller.
+			</p>
+			<p>
+				<h2>Fourth revision completed</h2>
+			</p>
+			<p>
+				I have finished the block diagram of the new circuit, selected the components for the PCB and created a BOM for it. I then uploaded the BOM to the manufacture's website to check avaliability of the components. I modified the Python script used to produce the BOM to fit the format required by the site.
+			</p>
+			<p>
+				All the components are currently avaliable through this site.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>System overview concept</h2>
+			</p>
+			<p class="date">
+				I have compiled my research into the theory behind the system and colated it to consider the areas that I still needed consider. This helped me to spot any areas that would be more compicated and reads that I didn't have sufficient research to resovle. This compilation has also made me more familiar to the concepts, which will make it eaasier to start writing the required software.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>I2C communication</h2>
+			</p>
+			<p class="date">
+				11/3/2021
+			</p>
+			<p>
+				I have installed and setup an environment in which to develop and deploy Arduino code to an Arduino to test the components required.
+			</p>
+		</div>
 	</body>
 </html>
