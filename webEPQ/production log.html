@@ -182,7 +182,181 @@
 				11/3/2021
 			</p>
 			<p>
-				I have installed and setup an environment in which to develop and deploy Arduino code to an Arduino to test the components required.
+				I have installed and setup an environment in which to develop and deploy Arduino code to an Arduino to test the components required. I began this by researching and implemeting I2C communication of the Arduino.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Testing the fourth revision</h2>
+			</p>
+			<p class="date">
+				16/3/2021
+			</p>
+			<p>
+				The PCBs have arrived from the manufacture. I can now start to work on testing these and integrating them with the software. The PCBs fit into the breadboard with the Arduino and I used a 22 gauge solid core wire to connect the two together.
+			</p>
+			<p>
+				Using a multimeter, I check the voltages around the PCB to ensure that they were as expected. The supply voltage was reading back very low, so I increased the voltage at the top of the potential divider to try increase the supply voltage, which seemed to fix the issue.
+			</p>
+			<p>
+				<h2>Reading the first register</h2>
+			</p>
+			<p>
+				With the circuit connected to the Arduino, I used the I2C code I had already written to read the value back from the WHO_AM_I register which readback the correct value. However, the dynamic values from the sensors remained null.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Diagnosing the issue</h2>
+			</p>
+			<p class="date">
+				18/3/2021
+			</p>
+			<p>
+				At first I assumed the issue was with the votlage supply to the IC not being high enough, being too high or simply fluctuating too much. Solving this would require another redesign to add either a different voltage regulation method, or to add more capcitance between the supply and ground.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Voltage level shifter</h2>
+			</p>
+			<p class="date">
+				11/4/2021
+			</p>
+			<p>
+				Having assumed that the issue was with feedback from the supply voltage from the Arduino and the communication lines causing invalid voltages being seen by the IC, I have researched, designed and made a voltage level shifter that should be able to solve the problem.
+			</p>
+			<p>
+				I started with a naive solution using four transistors in a loop to isolate each side and allow bi-directional communication. However, this design did not function as I had hoped. I tested each side of the shifter separately and found that they worked when independent from each other using an oscilloscope to view the output of the circuit. I discovered an issue with one of the resistors being the incorrect value, though fixing this had no bearing on the result of the test.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Changing to MOSFETs</h2>
+			</p>
+			<p class="date">
+				18/4/2021
+			</p>
+			<p>
+				With the loop of BJT transistors being non-functional, I have returned to my research into the topic and found a diagram that makes use of MOSFETs to connect the two voltage levels. This method should work bi-directionally and only require one component per signal line.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>MOSFETs installed</h2>
+			</p>
+			<p class="date">
+				21/4/2021
+			</p>
+			<p>
+				I have remade the circuit using the MOSFETs and communicaiton between the Arduino and IMU functions correctly on static registers, though the same null values as before are seen in the sensors' dynamic register.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>...</h2>
+			</p>
+			<p class="date">
+				22/4/2021
+			</p>
+			<p>
+				I have discovered a line in the datasheet of the IMU that describes a register that must be set to move out of sleep mode and start the sensors. This explains the null data and also suggests that the setup I had before would have funcitoned just as well.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Not quite that simple</h2>
+			</p>
+			<p class="date">
+				27/4/2021
+			</p>
+			<p>
+				The fix to the sleep mode has not worked as I expected and has instead reduced the number of bytes I can read in any one go. I can now read and write to the registers however, so the MOSFET version is the most successful yet. The WHO_AM_I register continues to return the correct value.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Digital oscilloscope</h2>
+			</p>
+			<p class="date">
+				28/4/2021
+			</p>
+			<p>
+				I have been looking into getting access to a digital oscilloscope to check that he I2C communicatin is happening as I expect. While it is likely that this is functioning correctly, it is one of the few things I have yet to check.
+			</p>
+			<p>
+				I have been unable to get access to a digital oscilloscope, so will need to assume that the I2C works and eleminate this variable some other way.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>New inspirations for the software</h2>
+			</p>
+			<p class="date">
+				6/5/2021
+			</p>
+			<p>
+				I have found a GitHub repositary and issue thread that document an commertial breadout board for the IMU I am using. I have tried this code with my PCB and found that it doesn't work either.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>eleminating variables</h2>
+			</p>
+			<p class="date">
+				10/5/2021
+			</p>
+			<p>
+				Haing tried a number of different example softwares for the IMU, I have purchaced one of the commertial breakout boards for to eleminate this final variable. I have also tired the fourth revision PCB with two three different Arduino Nano's and an Arduino Every, none of which are able to get it to funciton.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Pre-made PCB</h2>
+			</p>
+			<p class="date">
+				12/5/2021
+			</p>
+			<p>
+				I receive the pre-made PCB from Adafruit and have modified their example software to suit the outputs I need. The code prints the data form the sensors correctly.
+			</p>
+			<p>
+				I have written a program in Processing to process the data and turn it into rotations and movements for a cube. I will need to add a velocity display to this program. I might revist the fourth revision PCB if I find time.
+			</p>	
+		</div>
+
+		<div>
+			<p>
+				<h2>Using GitHub</h2>
+			</p>
+			<p class="date">
+				27/5/2021
+			</p>
+			<p>
+				I have setup a GitHub repository to store and version the code I have written. This will allow me to revert to funcitonal versions and document any changes that I make.
+			</p>
+			<p>
+				I am using GitHub for its accessibility, ease of use and also wide spread use in the devlopement indeustry.
+			</p>
+			<p>
+				<h2>Progress with data from the IMU</h2>
+			</p>
+			<p>
+				With the pre-made PCB, I have been able to pull the required data and read the data using a connected computer. I have been able to translate this data to a cube, though the movement did not sync with what was actually happening.
+			</p>
+			<p>
+				I have corrected a number of bugs in the software and am now able to observe the movement, though the measurements drift overtime and will need to be filtered in some way to correct for this.
 			</p>
 		</div>
 	</body>
