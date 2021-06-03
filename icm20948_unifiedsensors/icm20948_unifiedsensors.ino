@@ -75,9 +75,9 @@ void setup(void) {
     sensors_event_t gyro;
     icm_gyro->getEvent(&gyro);
     
-    gyro_sum_x += gyro.gyro.x / gyro_divisor;
-    gyro_sum_y += gyro.gyro.y / gyro_divisor;
-    gyro_sum_z += gyro.gyro.z / gyro_divisor;
+    gyro_sum_x += gyro.gyro.x / (gyro_divisor * 1.0);
+    gyro_sum_y += gyro.gyro.y / (gyro_divisor * 1.0);
+    gyro_sum_z += gyro.gyro.z / (gyro_divisor * 1.0);
 
     i++;
   }
@@ -162,9 +162,9 @@ void loop() {
   Serial.print(","); Serial.print(gyro_dz);
   */
    /**/
-  Serial.print(gyro_vx);
-  Serial.print(","); Serial.print(gyro_vy);
-  Serial.print(","); Serial.print(gyro_vz);
+  Serial.print(gyro_vx * 1000);
+  Serial.print(","); Serial.print(gyro_vy * 1000);
+  Serial.print(","); Serial.print(gyro_vz * 1000);
   /**/
   /*
   Serial.print(gyro.gyro.x);
