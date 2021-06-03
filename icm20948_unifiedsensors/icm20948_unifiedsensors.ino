@@ -16,6 +16,7 @@ float gyro_dx, gyro_dy, gyro_dz;
 float gyro_off_x, gyro_off_y, gyro_off_z;
 unsigned long currentTime, previousTime;
 float elapsedTime;
+uint8_t gyro_divisor;
 
 //
 
@@ -48,6 +49,8 @@ void setup(void) {
   icm_mag = icm.getMagnetometerSensor();
   icm_mag->printSensorDetails();
 
+  gyro_divisor = icm.getGyroRateDivisor();
+
   gyro_vx = 0;
   gyro_vy = 0;
   gyro_vz = 0;
@@ -72,9 +75,9 @@ void setup(void) {
     sensors_event_t gyro;
     icm_gyro->getEvent(&gyro);
     
-    gyro_sum_x += gyro.gyro.x;
-    gyro_sum_y += gyro.gyro.y;
-    gyro_sum_z += gyro.gyro.z;
+    gyro_sum_x += gyro.gyro.x / gyro_divisor;
+    gyro_sum_y += gyro.gyro.y / gyro_divisor;
+    gyro_sum_z += gyro.gyro.z / gyro_divisor;
 
     i++;
   }
@@ -82,6 +85,8 @@ void setup(void) {
   gyro_off_x = gyro_sum_x / i;
   gyro_off_y = gyro_sum_y / i;
   gyro_off_z = gyro_sum_z / i;
+
+  
 }
 
 void loop() {
@@ -142,19 +147,24 @@ void loop() {
   Serial.print(",");
 
   //this is the rotational acceleration rather than the rotational displacement
-  gyro_vx = gyro_vx + ((gyro.gyro.x - gyro_off_x) * elapsedTime);
-  gyro_vy = gyro_vy + ((gyro.gyro.y - gyro_off_y) * elapsedTime);
-  gyro_vz = gyro_vz + ((gyro.gyro.z - gyro_off_z) * elapsedTime);
+  gyro_vx = gyro_vx + ((gyro.gyro.x / gyro_divisor - gyro_off_x) * elapsedTime);
+  gyro_vy = gyro_vy + ((gyro.gyro.y / gyro_divisor - gyro_off_y) * elapsedTime);
+  gyro_vz = gyro_vz + ((gyro.gyro.z / gyro_divisor - gyro_off_z) * elapsedTime);
 
   //rotational velocity to rotational displacement
   gyro_dx = gyro_dx + (gyro_vx * elapsedTime);
   gyro_dy = gyro_dy + (gyro_vy * elapsedTime);
   gyro_dz = gyro_dz + (gyro_vz * elapsedTime);
 
-  /**/
+  /*
   Serial.print(gyro_dx);
   Serial.print(","); Serial.print(gyro_dy);
   Serial.print(","); Serial.print(gyro_dz);
+  */
+   /**/
+  Serial.print(gyro_vx);
+  Serial.print(","); Serial.print(gyro_vy);
+  Serial.print(","); Serial.print(gyro_vz);
   /**/
   /*
   Serial.print(gyro.gyro.x);

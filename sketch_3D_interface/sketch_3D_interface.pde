@@ -53,9 +53,9 @@ void draw()
       rectMode(CENTER);
       translate(loc.x, loc.y, loc.z);
       
-      rotateX(dir.x);
-      rotateY(dir.y);
-      rotateZ(dir.z);
+      rotateX(dir.x * (180.0 / PI));
+      rotateY(dir.y * (180.0 / PI));
+      rotateZ(dir.z * (180.0 / PI));
       
       background(0);
       box(200);
