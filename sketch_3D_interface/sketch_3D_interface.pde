@@ -11,7 +11,7 @@ void setup()
   loc = new PVector(width/2, height/2, 0);
   dir = new PVector(0, 0, 0);
   
-  //printArray(Serial.list());
+  printArray(Serial.list());
   
   String portName = Serial.list()[2];
   myPort = new Serial(this, portName, 115200);
@@ -34,23 +34,47 @@ void draw()
     }
     if(val.contains("data:")){
       String[] data = split(val, ',');
+      if(data.length < 11){
+        println(val);
+        return;
+      }
       
       println(val);
       
-      dir.x = float(data[4]) / 1000.0;
-      dir.y = float(data[5]) / 1000.0;
-      dir.z = float(data[6]) / 1000.0;
+      float w = float(data[4]) / 1000.0;
+      float i = float(data[5]) / 1000.0;
+      float j = float(data[6]) / 1000.0;
+      float k = float(data[7]) / 1000.0;
+      
+      dir.x = atan2(2 * (w * i + j * k), 1 - 2 * (i * i + j * j));
+      float sin_y = 2 * (w * j - k * i);
+      if(sin_y >= 1){
+         dir.y = HALF_PI;
+      }else if(sin_y <= -1){
+        dir.y = -HALF_PI;
+      }else{
+        dir.y = asin(sin_y);
+      }
+      dir.z = atan2(2 * (2 * k + i * j), 1 - 2 * (j * j + k * k));
+      
+      /*
+      dir.x = float(data[5]) / 1000.0;
+      dir.y = float(data[6]) / 1000.0;
+      dir.z = float(data[7]) / 1000.0;
+      */
           
       rectMode(CENTER);
       translate(loc.x, loc.y, loc.z);
       
       rotateX(-dir.x * (30.0 / PI));
-      rotateY(dir.z * (30.0 / PI));
+      rotateY(dir.z * (15.0 / PI));
       rotateZ(dir.y * (30.0 / PI));
       
       background(0);
       box(200);
       //rect(0, 0, 100, 100);
+    }else{
+      println(val); 
     }
   }
 }
