@@ -1,12 +1,3 @@
-/**
- * Simple Read
- * 
- * Read data from the serial port and change the color of a rectangle
- * when a switch connected to a Wiring or Arduino board is pressed and released.
- * This example works with the Wiring / Arduino program that follows below.
- */
-
-
 import processing.serial.*;
 
 Serial myPort;                // Create object from Serial class
@@ -46,16 +37,16 @@ void draw()
       
       println(val);
       
-      dir.x = float(data[4]);
-      dir.y = float(data[5]);
-      dir.z = float(data[6]);
+      dir.x = float(data[4]) / 1000.0;
+      dir.y = float(data[5]) / 1000.0;
+      dir.z = float(data[6]) / 1000.0;
           
       rectMode(CENTER);
       translate(loc.x, loc.y, loc.z);
       
-      rotateX(dir.x);
-      rotateY(dir.y);
-      rotateZ(dir.z);
+      rotateX(-dir.x * (30.0 / PI));
+      rotateY(dir.z * (30.0 / PI));
+      rotateZ(dir.y * (30.0 / PI));
       
       background(0);
       box(200);
@@ -63,28 +54,3 @@ void draw()
     }
   }
 }
-
-
-
-/*
-
-// Wiring / Arduino Code
-// Code for sensing a switch status and writing the value to the serial port.
-
-int switchPin = 4;                       // Switch connected to pin 4
-
-void setup() {
-  pinMode(switchPin, INPUT);             // Set pin 0 as an input
-  Serial.begin(9600);                    // Start serial communication at 9600 bps
-}
-
-void loop() {
-  if (digitalRead(switchPin) == HIGH) {  // If switch is ON,
-    Serial.write(1);               // send 1 to Processing
-  } else {                               // If the switch is not ON,
-    Serial.write(0);               // send 0 to Processing
-  }
-  delay(100);                            // Wait 100 milliseconds
-}
-
-*/
