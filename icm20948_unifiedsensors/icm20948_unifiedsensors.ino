@@ -87,14 +87,6 @@ void setup(void) {
   gyro_off_x = gyro_sum_x / i;
   gyro_off_y = gyro_sum_y / i;
   gyro_off_z = gyro_sum_z / i;
-
-  Serial.print("offsets:"); Serial.print(gyro_off_x);
-  Serial.print(",");        Serial.print(gyro_off_y);
-  Serial.print(",");        Serial.print(gyro_off_z);
-  Serial.print(",");        Serial.print(i);
-  Serial.print(",");        Serial.print(gyro_sum_x);
-  Serial.print(",");        Serial.print(gyro_sum_y);
-  Serial.print(",");        Serial.println(gyro_sum_z);
 }
 
 void loop() {
