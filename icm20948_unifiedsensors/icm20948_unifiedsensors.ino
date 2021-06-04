@@ -58,17 +58,23 @@ void setup(void) {
   gyro_off_z = 0;
 
   //initialise values to calculate the first degree inherent offset
-  long gyro_sum_x, gyro_sum_y, gyro_sum_z;
+  float gyro_sum_x, gyro_sum_y, gyro_sum_z;
   gyro_sum_x = 0;
   gyro_sum_y = 0;
   gyro_sum_z = 0;
 
   //loop and sum measurements
-  int repeats = 10000;
+  int repeats = 1000;
   int i = 1;
   while(i < repeats){
+    sensors_event_t accel;
     sensors_event_t gyro;
+    sensors_event_t temp;
+    sensors_event_t mag;
+    icm_temp->getEvent(&temp);
+    icm_accel->getEvent(&accel);
     icm_gyro->getEvent(&gyro);
+    icm_mag->getEvent(&mag);
     
     gyro_sum_x += gyro.gyro.x / (gyro_divisor * 1.0);
     gyro_sum_y += gyro.gyro.y / (gyro_divisor * 1.0);
@@ -82,7 +88,13 @@ void setup(void) {
   gyro_off_y = gyro_sum_y / i;
   gyro_off_z = gyro_sum_z / i;
 
-  
+  Serial.print("offsets:"); Serial.print(gyro_off_x);
+  Serial.print(",");        Serial.print(gyro_off_y);
+  Serial.print(",");        Serial.print(gyro_off_z);
+  Serial.print(",");        Serial.print(i);
+  Serial.print(",");        Serial.print(gyro_sum_x);
+  Serial.print(",");        Serial.print(gyro_sum_y);
+  Serial.print(",");        Serial.println(gyro_sum_z);
 }
 
 void loop() {
