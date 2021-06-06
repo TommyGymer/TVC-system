@@ -22,6 +22,7 @@ class Quat
 		Quat axis_angle(float scale);
 		Quat conjugate();
 		Quat inverse();
+		Quat rotate(Quat other);
 		float magnitude();
 		float w;
 		float i;

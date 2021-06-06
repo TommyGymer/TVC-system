@@ -14,6 +14,7 @@ Adafruit_Sensor *icm_temp, *icm_accel, *icm_gyro, *icm_mag;
 
 Quat gyro_v;                                                        //gyro quaternion
 Quat gyro_off;                                                      //gyro offset quaternion
+Quat accl_off;                                                      //accelerometer offset quaternion
 unsigned long currentTime, previousTime;                            //to calculate change in time
 float elapsedTime;                                                  //calculated change in time
 uint8_t gyro_divisor;                                               //divider to convert gyro data to useful information
@@ -23,6 +24,7 @@ uint8_t gyro_divisor;                                               //divider to
 void setup(void) {
   Serial.begin(115200);                                             //start the serial connection at 115200 baud
   while (!Serial)                                                   //wait for a serial connection
+  Serial.println("Serial connected");
   delay(10);                                                        //pause to ensure connection
   
   if (!icm.begin_I2C()) {                                           //check if connected to the IC over I2C
@@ -65,6 +67,11 @@ void setup(void) {
   gyro_sum_y = 0;
   gyro_sum_z = 0;
 
+  float acc_sum_x, acc_sum_y, acc_sum_z;
+  acc_sum_x = 0;
+  acc_sum_y = 0;
+  acc_sum_z = 0;
+
   //loop and sum measurements
   int repeats = 2000;
   int i = 1;
@@ -82,13 +89,23 @@ void setup(void) {
     gyro_sum_y += gyro.gyro.y / (gyro_divisor * 1.0);
     gyro_sum_z += gyro.gyro.z / (gyro_divisor * 1.0);
 
+    acc_sum_x += accel.acceleration.x;
+    acc_sum_y += accel.acceleration.y;
+    acc_sum_z += accel.acceleration.z - 9.81;
+
     i++;
   }
 
-  //divide the summed measurements by the number of measurements to calculate an average offset from zero  
+  //divide the summed measurements by the number of measurements to calculate an average offset from zero
+  gyro_off.w = 0;
   gyro_off.i = gyro_sum_x / i;
   gyro_off.j = gyro_sum_y / i;
   gyro_off.k = gyro_sum_z / i;
+
+  accl_off.w = 0;
+  accl_off.i = acc_sum_x / i;
+  accl_off.j = acc_sum_y / i;
+  accl_off.k = acc_sum_z / i;
 }
 
 void loop() {
@@ -112,11 +129,11 @@ void loop() {
   Serial.print(",");
 
   Quat acc_update(0, accel.acceleration.x, accel.acceleration.y, accel.acceleration.z);
+  acc_update = acc_update.sub(accl_off);
 
-  Serial.print(accel.acceleration.x);
-  Serial.print(","); Serial.print(accel.acceleration.y);
-  Serial.print(","); Serial.print(accel.acceleration.z);
-  Serial.print(",");
+  Serial.print(acc_update.i);
+  Serial.print(","); Serial.print(acc_update.j);
+  Serial.print(","); Serial.print(acc_update.k);
 
   Quat val(0, gyro.gyro.x, gyro.gyro.y, gyro.gyro.z);
   val = val.div(gyro_divisor);
@@ -124,25 +141,26 @@ void loop() {
 
   Quat gyro_update = val.axis_angle(elapsedTime);
   
+  Quat est_grav = acc_update.rotate(gyro_v).normalised();
+  Quat tilt_corr = est_grav.axis_angle_weight(0.8);
 
-  Quat est_grav = gyro_v.mult(acc_update).mult(gyro_v.inverse()).normalised();
-  Quat tilt_corr = est_grav.axis_angle_weight(0.02);
-
-  gyro_update.mult(tilt_corr);
-
-  gyro_v = gyro_v.mult(gyro_update);
+  gyro_v = tilt_corr.mult(gyro_v.mult(gyro_update));
 
    /**/
-  Serial.print(gyro_v.w * 1000);
+  Serial.print(","); Serial.print(gyro_v.w * 1000);
   Serial.print(","); Serial.print(gyro_v.i * 1000);
   Serial.print(","); Serial.print(gyro_v.j * 1000);
   Serial.print(","); Serial.print(gyro_v.k * 1000);
   /**/
 
-  Serial.print(",");
-  Serial.print(mag.magnetic.x);
+  Serial.print(","); Serial.print(mag.magnetic.x);
   Serial.print(","); Serial.print(mag.magnetic.y);
   Serial.print(","); Serial.print(mag.magnetic.z);
+
+  Serial.print(","); Serial.print(est_grav.w * 1000);
+  Serial.print(","); Serial.print(est_grav.i * 1000);
+  Serial.print(","); Serial.print(est_grav.j * 1000);
+  Serial.print(","); Serial.print(est_grav.k * 1000);
 
   Serial.println();
 }
