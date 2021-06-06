@@ -82,11 +82,11 @@ Quat Quat::normalised()
 	return n;
 }
 
-Quat Quat::axis_angle()
+Quat Quat::axis_angle_weight(float weight)
 {
-	Quat n(w, i, j, k);
-	Quat norm(0, -k, 0, i);
-	float s = acos(j);
+	Quat n;
+	Quat norm(0, -j, i, 0);
+	float s = acos(k) * weight;
 	n.w = cos(s / 2);
 	n.i = norm.i * sin(s / 2);
 	n.j = norm.j * sin(s / 2);
@@ -98,10 +98,21 @@ Quat Quat::axis_angle(float scale)
 {
 	Quat n(w, i, j, k);
 	Quat norm = normalised();
-	float s = magnitude() * scale;
+	float s = magnitude() * (1 - scale);
 	n.w = cos(s / 2);
 	n.i = norm.i * sin(s / 2);
 	n.j = norm.j * sin(s / 2);
 	n.k = norm.k * sin(s / 2);
 	return n;
+}
+
+Quat Quat::conjugate()
+{
+	Quat n(w, -i, -j, -k);
+}
+
+Quat Quat::inverse()
+{
+	float mag = magnitude();
+	return conjugate().div(sq(mag));
 }

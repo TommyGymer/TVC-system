@@ -123,10 +123,14 @@ void loop() {
   val = val.sub(gyro_off);
 
   Quat gyro_update = val.axis_angle(elapsedTime);
-  gyro_v = gyro_v.mult(gyro_update);
+  
 
-  Quat est_grav = acc_update.mult(gyro_v).normalised();
-  Quat tilt_corr = est_grav.axis_angle();
+  Quat est_grav = gyro_v.mult(acc_update).mult(gyro_v.inverse()).normalised();
+  Quat tilt_corr = est_grav.axis_angle_weight(0.02);
+
+  gyro_update.mult(tilt_corr);
+
+  gyro_v = gyro_v.mult(gyro_update);
 
    /**/
   Serial.print(gyro_v.w * 1000);

@@ -18,8 +18,10 @@ class Quat
 		Quat add(Quat other);
 		Quat sub(Quat other);
 		Quat normalised();
-		Quat axis_angle();
+		Quat axis_angle_weight(float weight);
 		Quat axis_angle(float scale);
+		Quat conjugate();
+		Quat inverse();
 		float magnitude();
 		float w;
 		float i;
