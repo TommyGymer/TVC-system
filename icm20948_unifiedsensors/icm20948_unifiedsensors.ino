@@ -136,15 +136,13 @@ void loop() {
   Serial.print(","); Serial.print(acc_update.k);
 
   Quat val(0, gyro.gyro.x, gyro.gyro.y, gyro.gyro.z);
-  val = val.div(gyro_divisor);
   val = val.sub(gyro_off);
 
   Quat gyro_update = val.axis_angle(elapsedTime);
+  gyro_v = gyro_v.mult(gyro_update);
   
   Quat est_grav = acc_update.rotate(gyro_v).normalised();
   Quat tilt_corr = est_grav.axis_angle_weight(0.8);
-
-  gyro_v = gyro_v.mult(gyro_update);
 
   Quat output = tilt_corr.mult(gyro_v);
 
@@ -159,10 +157,13 @@ void loop() {
   Serial.print(","); Serial.print(mag.magnetic.y);
   Serial.print(","); Serial.print(mag.magnetic.z);
 
-  Serial.print(","); Serial.print(est_grav.w * 1000);
-  Serial.print(","); Serial.print(est_grav.i * 1000);
-  Serial.print(","); Serial.print(est_grav.j * 1000);
-  Serial.print(","); Serial.print(est_grav.k * 1000);
+  /*
+  Quat diff = gyro_v.sub(output);
+  Serial.print(","); Serial.print(diff.w * 1000);
+  Serial.print(","); Serial.print(diff.i * 1000);
+  Serial.print(","); Serial.print(diff.j * 1000);
+  Serial.print(","); Serial.print(diff.k * 1000);
+  */
 
   Serial.println();
 }
