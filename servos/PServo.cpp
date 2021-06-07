@@ -2,27 +2,33 @@
 #include <Servo.h>
 #include "PServo.h"
 
-void connect(int pin)
-{
+PServo::PServo(void){}
 
+bool PServo::connect(int pin)
+{
+	if(servo.attached()){
+		return false;
+	}
+	servo.attach(pin);
+	return true;
 }
 
-void diconnect(void)
+void PServo::diconnect(void)
 {
-
+	servo.detach();
 }
 
-void write(int val)
+void PServo::write(int val)
 {
-
+	servo.write(val);
 }
 
-void writeMicro(int val)
+void PServo::writeMicro(int val)
 {
-
+	servo.writeMicroseconds(val);
 }
 
-void writeAngle(float angle)
+void PServo::writeAngle(float angle)
 {
-	
+	servo.write(floor(15 + ((angle / PI) * 165)));
 }

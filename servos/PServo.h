@@ -11,19 +11,19 @@
 class PServo
 {
 	public:
+		Servo servo;
 		PServo();
 		PServo(int min, int max) : _min(min), _max(max) {}
 		PServo(int min, int max, float range) : _min(min), _max(max), _range(range) {}
-		void connect(int pin);
+		bool connect(int pin);
 		void diconnect(void);
 		void write(int val);
 		void writeMicro(int val);
 		void writeAngle(float angle);
-	private:
 		int _pin{12};
 		int _min{15};
 		int _max{180};
 		float _range{PI};
-}
+};
 
 #endif
