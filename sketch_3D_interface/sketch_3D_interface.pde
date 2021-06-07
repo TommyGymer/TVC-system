@@ -46,6 +46,7 @@ void draw()
       float j = float(data[6]) / 1000.0;
       float k = float(data[7]) / 1000.0;
       
+      /*
       //dir.x = atan2(2 * (w * i + j * k), 1 - 2 * (i * i + j * j));
       dir.x = atan2(2 * (i * w - j * k), 1 - 2 * (sq(i) - sq(k)));
       float sin_y = 2 * (w * j - k * i);
@@ -59,6 +60,11 @@ void draw()
       dir.y = asin(2 * (i * j + k * w));
       //dir.z = atan2(2 * (2 * k + i * j), 1 - 2 * (j * j + k * k));
       dir.z = atan2(2 * (j * w - i * k), 1 - 2 * (sq(j) - sq(k)));
+      */
+      
+      dir.x = atan2(2.0 * (j * k + i * w), (-sq(i) - sq(j) + sq(k) + sq(w)));
+      dir.y = atan2(2.0 * (i * j + k * w), (sq(i) - sq(j) - sq(k) + sq(w)));
+      dir.z = asin(-2.0 * (i * k - j * w) / (sq(i) + sq(j) + sq(k) + sq(w)));
       
       /*
       dir.x = float(data[5]) / 1000.0;
@@ -69,9 +75,9 @@ void draw()
       rectMode(CENTER);
       translate(loc.x, loc.y, loc.z);
       
-      rotateX(-dir.x * 3*PI);
-      rotateY(dir.y * 3*PI);
-      rotateZ(dir.z * 3*PI);
+      rotateX(-dir.x);
+      rotateY(dir.y);
+      rotateZ(dir.z);
       
       background(0);
       box(200);
