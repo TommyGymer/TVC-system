@@ -12,10 +12,16 @@ void setup() {
   servo.attach(pin);
 }
 
+//takes an angle in radians and returns the equivilent servo value
+int valForAngle(float angle){
+  return floor(15 + ((angle / PI) * 165));
+}
+
 void loop() {
-  if(Serial.available() > 2){
-    int val = (int) Serial.parseInt();
+  if(Serial.available() > 0){
+    float val = Serial.parseFloat();
     Serial.println(val);
-    servo.write(val);
+    servo.write(valForAngle(val));
+    Serial.read();
   }
 }
