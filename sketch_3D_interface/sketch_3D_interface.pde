@@ -50,34 +50,6 @@ void draw()
       dir.y = atan2(2.0 * (i * j + k * w), (sq(i) - sq(j) - sq(k) + sq(w)));
       dir.z = asin(-2.0 * (i * k - j * w) / (sq(i) + sq(j) + sq(k) + sq(w)));
       
-      /*
-      float[][] init_a = {
-        {w, -k, -j, -i},
-        {k, w, -i, j},
-        {j, i, w, -k},
-        {i, -j, k, w}
-      };
-      Matrix a = new Matrix(init_a);
-      float[][] init_b = {
-        {w, -k, -j, -i},
-        {k, w, i, -j},
-        {j, -i, w, k},
-        {i, j, -k, w}
-      };
-      Matrix b = new Matrix(init_b);
-      Matrix result = a.mult(b);
-      
-      rectMode(CENTER);
-      
-      resetMatrix();
-      applyMatrix(result.vals[0][0], result.vals[1][0], result.vals[2][0], result.vals[3][0],
-                  result.vals[0][1], result.vals[1][1], result.vals[2][1], result.vals[3][1],
-                  result.vals[0][2], result.vals[1][2], result.vals[2][2], result.vals[3][2],
-                  result.vals[0][3], result.vals[1][3], result.vals[2][3], result.vals[3][3]
-      );*/
-      
-      
-      
       rectMode(CENTER);
       translate(loc.x, loc.y, loc.z);
       
@@ -87,10 +59,6 @@ void draw()
       
       background(0);
       box(200);
-      
-      //camera(70, 35, 120, 50, 50, 0, 0, 1, 0);
-      
-      //rect(0, 0, 100, 100);
     }else{
       println(val); 
     }
