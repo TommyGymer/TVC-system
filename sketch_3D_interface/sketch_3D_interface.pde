@@ -7,11 +7,11 @@ PVector loc, dir, acc;
 
 void setup() 
 {
-  size(400, 400, P3D);
+  size(800, 800, P3D);
   loc = new PVector(width/2, height/2, 0);
   dir = new PVector(0, 0, 0);
   
-  //printArray(Serial.list());
+  printArray(Serial.list());
   
   String portName = Serial.list()[2];
   myPort = new Serial(this, portName, 115200);
@@ -34,23 +34,66 @@ void draw()
     }
     if(val.contains("data:")){
       String[] data = split(val, ',');
+      if(data.length < 11){
+        println(val);
+        return;
+      }
       
       println(val);
       
-      dir.x = float(data[4]) / 1000.0;
-      dir.y = float(data[5]) / 1000.0;
-      dir.z = float(data[6]) / 1000.0;
-          
+      float w = float(data[4]) / 1000.0;
+      float i = float(data[5]) / 1000.0;
+      float j = float(data[6]) / 1000.0;
+      float k = float(data[7]) / 1000.0;
+      
+      dir.x = atan2(2.0 * (j * k + i * w), (-sq(i) - sq(j) + sq(k) + sq(w)));
+      dir.y = atan2(2.0 * (i * j + k * w), (sq(i) - sq(j) - sq(k) + sq(w)));
+      dir.z = asin(-2.0 * (i * k - j * w) / (sq(i) + sq(j) + sq(k) + sq(w)));
+      
       rectMode(CENTER);
       translate(loc.x, loc.y, loc.z);
       
-      rotateX(-dir.x * (30.0 / PI));
-      rotateY(dir.z * (30.0 / PI));
-      rotateZ(dir.y * (30.0 / PI));
+      rotateZ(dir.z);
+      rotateX(-dir.x);
+      rotateY(dir.y);
       
       background(0);
       box(200);
-      //rect(0, 0, 100, 100);
+    }else{
+      println(val); 
     }
   }
+}
+
+public class Matrix{
+   public float[][] vals;
+                
+   public Matrix(){
+     vals = new float[4][4];
+      for(int x = 0; x < 4; x++){
+        for(int y = 0; y < 4; y++){
+          vals[x][y] = 0;
+        }
+      }
+   }
+   
+   public Matrix(float[][] _vals){
+     vals = _vals;
+   }
+   
+   public Matrix mult(Matrix other){
+      Matrix ret = new Matrix(); 
+      
+      for(int i = 0; i < 4; i++){
+         for(int j = 0; j < 4; j++){
+           float val = 0;
+           for(int k = 0; k < 4; k++){
+             val += vals[i][k] * other.vals[k][j];
+           }
+           ret.vals[j][i] = val;
+         }
+      }
+      
+      return ret;
+   }
 }

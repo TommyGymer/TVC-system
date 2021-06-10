@@ -1,6 +1,7 @@
 // Demo for getting individual unified sensor data from the ICM20948
 #include <Adafruit_ICM20948.h>
 #include <Adafruit_ICM20X.h>
+#include "Quat.h"
 
 Adafruit_ICM20948 icm;
 Adafruit_Sensor *icm_temp, *icm_accel, *icm_gyro, *icm_mag;
@@ -11,17 +12,17 @@ Adafruit_Sensor *icm_temp, *icm_accel, *icm_gyro, *icm_mag;
 #define ICM_MISO 12
 #define ICM_MOSI 11
 
-float gyro_vx, gyro_vy, gyro_vz;                                    //gyro values
-float gyro_off_x, gyro_off_y, gyro_off_z;                           //gyro offsets
+Quat gyro_v;                                                        //gyro quaternion
+Quat gyro_off;                                                      //gyro offset quaternion
+Quat accl_off;                                                      //accelerometer offset quaternion
 unsigned long currentTime, previousTime;                            //to calculate change in time
 float elapsedTime;                                                  //calculated change in time
 uint8_t gyro_divisor;                                               //divider to convert gyro data to useful information
 
-//
-
 void setup(void) {
   Serial.begin(115200);                                             //start the serial connection at 115200 baud
   while (!Serial)                                                   //wait for a serial connection
+  Serial.println("Serial connected");
   delay(10);                                                        //pause to ensure connection
   
   if (!icm.begin_I2C()) {                                           //check if connected to the IC over I2C
@@ -30,8 +31,15 @@ void setup(void) {
     Serial.println("Failed to find ICM20948 chip");
     while (1) {
       delay(10);                                                    //if not connected, wait
+      if(icm.begin_I2C()){
+        break;
+      }else{
+        Serial.println("Failed to find ICM20948 chip");
+      }
     }
   }
+
+  Serial.println("Sensor found");
 
   //get sensors and print out sensor details
   icm_temp = icm.getTemperatureSensor();                            //get the temperature sensor
@@ -48,14 +56,8 @@ void setup(void) {
 
   gyro_divisor = icm.getGyroRateDivisor();                          //get the divisor for the gyro data
 
-  //initialise the gyro values to 0
-  gyro_vx = 0;
-  gyro_vy = 0;
-  gyro_vz = 0;
-  
-  gyro_off_x = 0;
-  gyro_off_y = 0;
-  gyro_off_z = 0;
+  //initialise the gyro quaternion
+  gyro_v.w = 1;
 
   //initialise values to calculate the first degree inherent offset
   float gyro_sum_x, gyro_sum_y, gyro_sum_z;
@@ -63,8 +65,13 @@ void setup(void) {
   gyro_sum_y = 0;
   gyro_sum_z = 0;
 
+  float acc_sum_x, acc_sum_y, acc_sum_z;
+  acc_sum_x = 0;
+  acc_sum_y = 0;
+  acc_sum_z = 0;
+
   //loop and sum measurements
-  int repeats = 1000;
+  int repeats = 2000;
   int i = 1;
   while(i < repeats){
     sensors_event_t accel;
@@ -80,13 +87,23 @@ void setup(void) {
     gyro_sum_y += gyro.gyro.y / (gyro_divisor * 1.0);
     gyro_sum_z += gyro.gyro.z / (gyro_divisor * 1.0);
 
+    acc_sum_x += accel.acceleration.x;
+    acc_sum_y += accel.acceleration.y;
+    acc_sum_z += accel.acceleration.z - 9.81;
+
     i++;
   }
 
   //divide the summed measurements by the number of measurements to calculate an average offset from zero
-  gyro_off_x = gyro_sum_x / i;
-  gyro_off_y = gyro_sum_y / i;
-  gyro_off_z = gyro_sum_z / i;
+  gyro_off.w = 0;
+  gyro_off.i = gyro_sum_x / i;
+  gyro_off.j = gyro_sum_y / i;
+  gyro_off.k = gyro_sum_z / i;
+
+  accl_off.w = 0;
+  accl_off.i = acc_sum_x / i;
+  accl_off.j = acc_sum_y / i;
+  accl_off.k = acc_sum_z / i;
 }
 
 void loop() {
@@ -109,28 +126,42 @@ void loop() {
   Serial.print(temp.temperature);
   Serial.print(",");
 
-  Serial.print(accel.acceleration.x);
-  Serial.print(","); Serial.print(accel.acceleration.y);
-  Serial.print(","); Serial.print(accel.acceleration.z);
-  Serial.print(",");
+  Quat acc_update(0, accel.acceleration.x, accel.acceleration.y, accel.acceleration.z);
+  acc_update = acc_update.sub(accl_off);
 
-  //gyro.gyro.* are the gyro velocities
-  gyro_vx = gyro_vx + ((gyro.gyro.x / gyro_divisor - gyro_off_x) * elapsedTime);
-  gyro_vy = gyro_vy + ((gyro.gyro.y / gyro_divisor - gyro_off_y) * elapsedTime);
-  gyro_vz = gyro_vz + ((gyro.gyro.z / gyro_divisor - gyro_off_z) * elapsedTime);
+  Serial.print(acc_update.i);
+  Serial.print(","); Serial.print(acc_update.j);
+  Serial.print(","); Serial.print(acc_update.k);
+
+  Quat val(0, gyro.gyro.x, gyro.gyro.y, gyro.gyro.z);
+  val = val.sub(gyro_off);
+
+  Quat gyro_update = val.axis_angle(elapsedTime);
+  gyro_v = gyro_v.mult(gyro_update);
+  
+  Quat est_grav = acc_update.rotate(gyro_v).normalised();
+  Quat tilt_corr = est_grav.axis_angle_weight(0.8);
+
+  Quat output = tilt_corr.mult(gyro_v);
 
    /**/
-  Serial.print(gyro_vx * 1000);
-  Serial.print(","); Serial.print(gyro_vy * 1000);
-  Serial.print(","); Serial.print(gyro_vz * 1000);
+  Serial.print(","); Serial.print(output.w * 1000);
+  Serial.print(","); Serial.print(output.i * 1000);
+  Serial.print(","); Serial.print(output.j * 1000);
+  Serial.print(","); Serial.print(output.k * 1000);
   /**/
 
-  Serial.print(",");
-  Serial.print(mag.magnetic.x);
+  Serial.print(","); Serial.print(mag.magnetic.x);
   Serial.print(","); Serial.print(mag.magnetic.y);
   Serial.print(","); Serial.print(mag.magnetic.z);
 
+  /*
+  Quat diff = gyro_v.sub(output);
+  Serial.print(","); Serial.print(diff.w * 1000);
+  Serial.print(","); Serial.print(diff.i * 1000);
+  Serial.print(","); Serial.print(diff.j * 1000);
+  Serial.print(","); Serial.print(diff.k * 1000);
+  */
+
   Serial.println();
-  delay(10);
-  
 }
