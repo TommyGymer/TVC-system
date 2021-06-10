@@ -50,18 +50,32 @@ void draw()
       dir.y = atan2(2.0 * (i * j + k * w), (sq(i) - sq(j) - sq(k) + sq(w)));
       dir.z = asin(-2.0 * (i * k - j * w) / (sq(i) + sq(j) + sq(k) + sq(w)));
       
-      /*
-      dir.x = float(data[5]) / 1000.0;
-      dir.y = float(data[6]) / 1000.0;
-      dir.z = float(data[7]) / 1000.0;
-      */
-          
+      float[][] temp = [
+        [w, k, -j, i],
+        [-k, w, i, j],
+        [j, -i, w, k],
+        [-i, -j, -k, w]
+      ];
+      Matrix a = new Matrix(temp);
+      temp = [
+        [w, k, -j, -i],
+        [-k, w, i, -j],
+        [j, -i, w, -k],
+        [i, j, k, w]
+      ];
+      Matrix b = new Matrix(temp);
+      
       rectMode(CENTER);
       translate(loc.x, loc.y, loc.z);
       
+      resetMatrix();
+      applyMatrix(a.mult(b));
+      
+      /*
       rotateX(-dir.x);
       rotateY(dir.y);
       rotateZ(dir.z);
+      */
       
       background(0);
       box(200);
@@ -70,4 +84,36 @@ void draw()
       println(val); 
     }
   }
+}
+
+public class Matrix{
+   public float[][] vals;
+                
+   public Matrix(){
+      for(int x = 0; x < 4; x++){
+        for(int y = 0; y < 4; y++){
+          vals[x][y] = 0;
+        }
+      }
+   }
+   
+   public Matrix(float[][] _vals){
+     vals = _vals;
+   }
+   
+   public Matrix mult(Matrix other){
+      Matrix ret = new Matrix(); 
+      
+      for(int i = 0; i < 4; i++){
+         for(int j = 0; j < 4; j++){
+           float val = 0;
+           for(int k = 0; k < 4; k++){
+             val += vals[i][k] * other.vals[k][j];
+           }
+           ret.vals[j][i] = val;
+         }
+      }
+      
+      return ret;
+   }
 }

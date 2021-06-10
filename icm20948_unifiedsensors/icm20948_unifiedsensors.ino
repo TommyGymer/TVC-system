@@ -19,8 +19,6 @@ unsigned long currentTime, previousTime;                            //to calcula
 float elapsedTime;                                                  //calculated change in time
 uint8_t gyro_divisor;                                               //divider to convert gyro data to useful information
 
-//
-
 void setup(void) {
   Serial.begin(115200);                                             //start the serial connection at 115200 baud
   while (!Serial)                                                   //wait for a serial connection
@@ -58,7 +56,7 @@ void setup(void) {
 
   gyro_divisor = icm.getGyroRateDivisor();                          //get the divisor for the gyro data
 
-  //initialise the gyro quaternion to 0
+  //initialise the gyro quaternion
   gyro_v.w = 1;
 
   //initialise values to calculate the first degree inherent offset
