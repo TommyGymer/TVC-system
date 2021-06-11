@@ -46,19 +46,31 @@ void draw()
       float j = float(data[6]) / 1000.0;
       float k = float(data[7]) / 1000.0;
       
+      float abs_ijk = sqrt(sq(i) + sq(j) + sq(k));
+      i /= abs_ijk; j /= abs_ijk; k /= abs_ijk;
+      
+      /*
       dir.x = atan2(2.0 * (j * k + i * w), (-sq(i) - sq(j) + sq(k) + sq(w)));
       dir.y = atan2(2.0 * (i * j + k * w), (sq(i) - sq(j) - sq(k) + sq(w)));
       dir.z = asin(-2.0 * (i * k - j * w) / (sq(i) + sq(j) + sq(k) + sq(w)));
+      */
       
+      background(0);
+      directionalLight(255, 255, 255, 0.0, 0.6, -0.8);
+      
+      pushMatrix();
       rectMode(CENTER);
-      translate(loc.x, loc.y, loc.z);
+      translate(loc.x, loc.y);
       
+      /*
       rotateZ(dir.z);
       rotateX(-dir.x);
       rotateY(dir.y);
+      */
+      rotate(acos(w) * 2, -i, k, j);
       
-      background(0);
-      box(200);
+      fill(0xff007fff); box(200);
+      popMatrix();
     }else{
       println(val); 
     }
