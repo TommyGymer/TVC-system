@@ -24,7 +24,8 @@ void setup(void) {
   while (!Serial)                                                   //wait for a serial connection
   Serial.println("Serial connected");
   delay(10);                                                        //pause to ensure connection
-  
+
+  int timeout = 0;
   if (!icm.begin_I2C()) {                                           //check if connected to the IC over I2C
     // if (!icm.begin_SPI(ICM_CS)) {                                //unused SPI connectors
     // if (!icm.begin_SPI(ICM_CS, ICM_SCK, ICM_MISO, ICM_MOSI)) {
@@ -35,6 +36,10 @@ void setup(void) {
         break;
       }else{
         Serial.println("Failed to find ICM20948 chip");
+        timeout++;
+        if(timeout >= 10){
+          while(true);
+        }
       }
     }
   }
@@ -140,9 +145,11 @@ void loop() {
   gyro_v = gyro_v.mult(gyro_update);
   
   Quat est_grav = acc_update.rotate(gyro_v).normalised();
-  Quat tilt_corr = est_grav.axis_angle_weight(0.8);
+  Quat tilt_corr = est_grav.axis_angle_weight(0.9);
+  Quat loop_corr = est_grav.axis_angle_weight(0.99);
 
   Quat output = tilt_corr.mult(gyro_v);
+  gyro_v = loop_corr.mult(gyro_v);
 
    /**/
   Serial.print(","); Serial.print(output.w * 1000);
