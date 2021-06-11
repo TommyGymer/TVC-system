@@ -13,7 +13,7 @@ void setup()
   
   printArray(Serial.list());
   
-  String portName = Serial.list()[0];
+  String portName = Serial.list()[2];
   myPort = new Serial(this, portName, 115200);
 }
 
@@ -67,7 +67,7 @@ void draw()
       rotateX(-dir.x);
       rotateY(dir.y);
       */
-      rotate(acos(w) * 2, i, j, k);
+      rotate(acos(w) * 2, -i, k, j);
       
       fill(0xff007fff); box(200);
       popMatrix();
