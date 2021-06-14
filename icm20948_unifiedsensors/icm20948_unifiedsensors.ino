@@ -2,6 +2,7 @@
 #include <Adafruit_ICM20948.h>
 #include <Adafruit_ICM20X.h>
 #include "Quat.h"
+#include "PServo.h"
 
 Adafruit_ICM20948 icm;
 Adafruit_Sensor *icm_temp, *icm_accel, *icm_gyro, *icm_mag;
@@ -18,6 +19,7 @@ Quat accl_off;                                                      //accelerome
 unsigned long currentTime, previousTime;                            //to calculate change in time
 float elapsedTime;                                                  //calculated change in time
 uint8_t gyro_divisor;                                               //divider to convert gyro data to useful information
+PServo servo_x;
 
 void setup(void) {
   Serial.begin(115200);                                             //start the serial connection at 115200 baud
@@ -109,7 +111,12 @@ void setup(void) {
   accl_off.i = acc_sum_x / i;
   accl_off.j = acc_sum_y / i;
   accl_off.k = acc_sum_z / i;
+
+  servo_x.connect();
+  servo_x.writeAngle((PI / 2));
 }
+
+int zero = 0;                                               //wait until reading 50 to 100, then zero the rotation to ensure correct orientation
 
 void loop() {
   //get the next measurement events from each of the sensors
@@ -151,23 +158,31 @@ void loop() {
   Quat output = tilt_corr.mult(gyro_v);
   gyro_v = loop_corr.mult(gyro_v);
 
-   /**/
+  //zero orientation at measurement 50
+  if(zero == 50){
+    gyro_v.w = 1;
+    gyro_v.i = 0;
+    gyro_v.j = 0;
+    gyro_v.k = 0;
+  }
+
+  servo_x.writeAngle((PI / 2) - asin(gyro_v.i));
+
   Serial.print(","); Serial.print(output.w * 1000);
   Serial.print(","); Serial.print(output.i * 1000);
   Serial.print(","); Serial.print(output.j * 1000);
   Serial.print(","); Serial.print(output.k * 1000);
-  /**/
 
   Serial.print(","); Serial.print(mag.magnetic.x);
   Serial.print(","); Serial.print(mag.magnetic.y);
   Serial.print(","); Serial.print(mag.magnetic.z);
 
   /*
-  Quat diff = gyro_v.sub(output);
-  Serial.print(","); Serial.print(diff.w * 1000);
-  Serial.print(","); Serial.print(diff.i * 1000);
-  Serial.print(","); Serial.print(diff.j * 1000);
-  Serial.print(","); Serial.print(diff.k * 1000);
+  Serial.print(","); Serial.print(acc_update.w * 1000);
+  Serial.print(","); Serial.print(acc_update.i * 1000);
+  Serial.print(","); Serial.print(acc_update.j * 1000);
+  Serial.print(","); Serial.print(acc_update.k * 1000);
+  Serial.print(","); Serial.print(asin(gyro_v.i));
   */
 
   Serial.println();
