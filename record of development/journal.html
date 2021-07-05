@@ -41,7 +41,7 @@
 				I have previously used an open-source circuit design tool called <a href="https://kicad.org/">KiCad</a> to design simple circuits. I made use of this piece of software to design a circuit around an <a href="https://www.mouser.co.uk/datasheet/2/389/lsm9ds1-1849526.pdf">IMU</a> that will collect motion and rotation data. This data can then be processed to determine the state of the system; its acceleration, veloity, orientation, altitude and spin can be found. This will form the basis on which the rest of the TVC system is built, as this data is vital to knowing what needs to be corrected.
 			</p>
 			<p>
-				<img src="initial circuit.png">
+				<img src="initial circuit.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/initial%20circuit.png?raw=true';">
 			</p>
 		</div>
 
@@ -100,7 +100,7 @@
 				<span>Next, I will need to consider the comminucation with the IC and also the power that needs to be supplied to the IC.</span>
 			</p>
 			<p>
-				<img src="second circuit.png">
+				<img src="second circuit.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/second%20circuit.png?raw=true';">
 	    	</p>
 		</div>
 
@@ -117,7 +117,7 @@
 				Each of the comminucation pins has been connected to a label to allow connection to a set of pins for connection to an Arduino. The 1.8V voltage supply has been sourced using a voltage divider from the Arduino's 5V supply. Potential dividers are documented in the report section fo this project.
 			</p>
 			<p>
-	    		<img src="second circuit 2.png">
+	    		<img src="second circuit 2.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/second%20circuit%202.png?raw=true';">
 			</p>
 		</div>
 
@@ -134,7 +134,7 @@
 				I have received and assembled the components from the last few entires:
 			</p>
 			<p>
-				<img src="spider 1.png">
+				<img src="spider 1.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/spider%201.png?raw=true';">
 			</p>
 			<p>
 				The above shows the IMU connected to the Arduino through I2C (documented in the report section) which allows the reading of data from the IMU. I used the <a href="https://www.mouser.co.uk/datasheet/2/389/dm00603953-1862087.pdf">data sheet</a> mentioned in the "<a href="#ENTRY-Looking at alternative chips">Looking at alternative chips</a>" entry to allow me to do this.
@@ -143,7 +143,7 @@
 				However, the measurement unit was smaller than expected (2mm by 2mm small) making it very fragile...
 			</p>
 			<p>
-				<img src="spider 2.png">
+				<img src="spider 2.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/spider%202.png?raw=true';">
 			</p>
 			<p>
 				This made it very hard to solder to with one of the solder pads falling off and the IC no longer usable. As a result, I have decided to design a PCB and have it printed (by a service such as <a href="https://jlcpcb.com/">JLCPCB.com</a>
@@ -170,7 +170,7 @@
 	    		<br />Gyroscope: <a href="https://datasheet.lcsc.com/szlcsc/1811071023_STMicroelectronics-L3GD20HTR_C128360.pdf">L3GD20HTR</a>
 			</p>
 			<p>
-	    		<img src="third circuit.png">
+	    		<img src="third circuit.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/third%20circuit.png?raw=true';">
 			</p>
 		    <p>
 		    	The above figure shows the circuit redesigned to work with these new components with the communication pins labeled. This version also features the pull-up resistors on the I2C communication lines as required by the protocol and the same potential divider as before. Each component has a number of capacitors at its Vcc pin to ensure that the voltage supply is smoothed; these have been added according to the datasheet of each component.
@@ -218,16 +218,16 @@
 				I have finished designing the two IC PCB and have rendered what these may look like once manufactured. The Gerber and BOM (bill of materials) will need to be sent to a PCB manufacture to be made. The pins can to be moved to other side of the board, though this isn't necessary.
 			</p>
 			<p>
-				<img src="render.png">
+				<img src="render.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/render.png?raw=true';">
 			</p>
 			<p>
-	    		<img src="layout.png">
+	    		<img src="layout.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/layout.png?raw=true';">
 			</p>
 			<p>
 				The block diagram of the circuit has been divided into its sepate parts by their funciton to improve ease of reading. This will also help when placing the components onto the PCB in that stage of design as the components which need to be close to each other are already in reasonable place relative to each other.
 			</p>
 			<p>
-	    		<img src="block.png">
+	    		<img src="block.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/block.png?raw=true';">
 			</p>
 		</div>
 
@@ -244,7 +244,7 @@
 				One of the components in the current design has gone out of stock on the PCB manufacture's website and will not be boack in stock for a number of months. As such, it will need to be replaced with a different component or a different manufacture found. It would be prefereable to redesign as the components in this design are not optimal as the main ICs could be condensed to a single IC, which would vastly simplify the design.
 			</p>
 			<p>
-	    		<img src="part list 1.png">
+	    		<img src="part list 1.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/part%20list%201.png?raw=true';">
 			</p>
 		</div>
 
@@ -261,7 +261,7 @@
 				With the lack of options and stock on <a href="https://jlcpcb.com/">jlcpcb.com</a>, I am looking at finding another, local PCB manufacture. After seraching around, I found <a href="https://pcbtrain.co.uk/">PCBTrain</a> who provide a service which allows the use of any of the components on <a href="https://www.mouser.co.uk/">Mouser</a>, which substantially increases the number of components that can be picked from.
 			</p>
 			<p>
-				<img src="part list 2.png">
+				<img src="part list 2.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/part%20list%202.png?raw=true';">
 			</p>
 			<p>
 			    However, the component I was looking at is still not avaliable, it seems likely that the component is in shortage and I will need to find an alternative. Though with the large number of avaliable components on the new site, I should be able to find a suitable one.
@@ -312,7 +312,7 @@
 				The circuit has been redesigned for the new IC; the pins have been connected to the required outputs on the PCB and the voltage supply smoothed according to <a href="https://www.st.com/resource/en/datasheet/lsm6ds33.pdf">the datasheet</a>. The new IC is also smaller than a single one of the previous ICs, so the PCB has been vastly shrunk.
 			</p>
 			<p>
-	    		<img src="final circuit.png">
+	    		<img src="final circuit.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/final%20circuit.png?raw=true';">
 	        </p>
 	        <p>
 	        	I used the <a href="https://product.tdk.com/info/en/documents/catalog_datasheet/imu/DS-000189-ICM-20948-v1.3.pdf">datasheet</a> to figure out which pins needed to be connected to the communication off of the PCB.
@@ -334,11 +334,11 @@
 			<p>
 				I modified the python script that generates the bill of matrials so it could output the format that the website wants. Below shows the table of materials before export.
 			</p>
-			<img src="BOM.png" alt="image unavaliable">
+			<img src="BOM.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/BOM.png?raw=true';">
 			<p>
 				All the components are currently in stock and avaliable through <a href="https://www.pcbtrain.co.uk/">this site.</a>
 			</p>
-			<img src="part list 3.png">
+			<img src="part list 3.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/part%20list%203.png?raw=true';">
 			<div class="comment">
 				<p class="date">
 					4/2/2021	9:33PM
@@ -371,19 +371,19 @@
 			    <span>Below is a breif overview of each of the problems that I will need to tackle and the physics of how this system works.</span>
 			</p>
 			<p>
-			    <img src="page 1.png">
+			    <img src="page 1.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/page%201.png?raw=true';">
 			</p>
 			<p>
 			    <span>Below I consider the effect of the force from the propulsion on the rotation of the rocket.</span>
 			</p>
 			<p>
-			    <img src="page 2.png">
+			    <img src="page 2.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/page%202.png?raw=true';">
 			</p>
 			<p>
 			    <span>Here, I consider how to calculate the moments of inertia which are needed in order to calculate the effect of the torque from the propolsion on the rotation of the rocket.</span>
 			</p>
 			<p>
-			    <img src="page 3.png">
+			    <img src="page 3.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/page%203.png?raw=true';">
 			</p>
 			<p>
 			    <span>Finally, I considered how the propulsion would need to be angled and moved to correct the rotation knowing how much force is required. To do this, a correction speed is needed to determine how quickly the mount should try to correct any rotation.</span>
@@ -392,7 +392,7 @@
 			    <span>It should also take into account any deviation from vertical and correct this also.</span>
 			</p>
 			<p>
-	    		<img src="page 4.png">
+	    		<img src="page 4.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/page%204.png?raw=true';">
 			</p>
 		</div>
 
@@ -502,35 +502,35 @@
 			</p>
 			<p>
 				<span>The circuit boards have arrived! With the boards here, I can start to work on the code to interact with them and control the servos.</span><br />
-				<img src="circuits in bag.png">
+				<img src="circuits in bag.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/circuits%20in%20bag.png?raw=true';">
 				<br /><br />
-				<img src="circuit.png">
+				<img src="circuit.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/circuit.png?raw=true';">
 			</p>
 			<p>
 				<span>I plugged the board into the breadboard and connected power; thankfully, it didn't fry it and the pins fit into the breadboard better than the arduino did.</span><br />
-				<img src="in board.png">
+				<img src="in board.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/in%20board.png?raw=true';">
 				<br /><br />
 				<span>With power connected, all I needed now was to connect the data and clock pins between the board and the Arduino. At first I used cut off legs from compnents as I had done with the power; however, the longer distance meant that I would need something longer. As such, I used a thicker wire with a solid core to prevent it fraying while pushing it into the breadboard.</span>
 				<br />
 				<span>I used the below tools to cut and strip the cable to the correct length</span>
 				<br />
-				<img src="tools.png">
+				<img src="tools.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/tools.png?raw=true';">
 				<br />
 				<span>Below is the wire I used; a solid core, 20-22 gauge wire.</span>
 				<br />
-				<img src="wire.png">
+				<img src="wire.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/wire.png?raw=true';">
 			</p>
 			<p>
 				<span>Next, I measured the supply from the Arduino to ensure it was within the range I expected.</span>
 				<br />
-				<img src="3V3.png">
+				<img src="3V3.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/3V3.png?raw=true';">
 				<br />
 				<span>The measurement should show 3.3V, so the 3.28V is well within the expected range.</span>
 			</p>
 			<p>
 				<span>After this, I checked the supply voltage on the board after the voltage divider to ensure that it could power the board</span>
 				<br />
-				<img src="1V8.png">
+				<img src="1V8.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/1V8.png?raw=true';">
 				<br />
 				<span>This read back at 1.47V which is too far below the miniumum 1.71V needed to run the IC</span>
 				<br />
@@ -538,7 +538,7 @@
 				<br />
 		        <span>This brought the voltage on the board upto 1.53V which was capable of powering the board, though I will need to be concious of power draw as this is still quite low.</span>
 		        <br />
-				<img src="cleannn.png">
+				<img src="cleannn.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/cleannn.png?raw=true';">
 			</p>
 		</div>
 
@@ -552,7 +552,7 @@
 				16/3/2021	10:49PM
 			</p>
 			<span>With the circuits up and running in a breadboard, I used the code I wrote to receive data from the circuit through I2C.</span><br />
-			<img src="reading WHO_AM_I.png"><br />
+			<img src="reading WHO_AM_I.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/reading%20WHO_AM_I.png?raw=true';"><br />
 			<span>This read back the correct value of 0xEA from the "WHO_AM_I" register at location 0h00.</span>
 			<div class="comment">
 				<p class="date">
@@ -578,7 +578,7 @@
 			</p>
 			<p>Having written the code that should be capable of reading the data from the IC, it has been unable to get the data it should have. However, the responses from the IC suggest that it is functioning correctly in terms of communication.</p>
 			<p>
-	    		<img src="no IMU data.png">
+	    		<img src="no IMU data.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/no%20IMU%20data.png?raw=true';">
 			</p>
 			<p>
 				I have concluded that the reason for the sensors in the IC not functioning correctly to fill the registers must be the result of the higher voltage data lines from the Arduino causing the voltage supply to the IC to increase and fluctuate.
@@ -609,54 +609,54 @@
 				Over the last week, I have been researching, designing and making a voltage level shifter which should be able to bridge between the IC and Arduino while ensuring that the voltages of both are maintained.
 			</p>
 			<p>
-				<img src="transistors.png">
+				<img src="transistors.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/transistors.png?raw=true';">
 			</p>
 			<p>
 				I started with a naive solution (above) in the form of four transistors that each tried to give their respective I2C device the required voltage; this resulted in a feedback loop which was unable to function. After some research in to how commertially avaliable versions worked, I came across a design which involed two inverters (not gates: the triangles with circles at the points) for each direction (shown below)
 			</p>
 			<p>
-				<img src="not gates.png"><span>[6]</span>
+				<img src="not gates.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/not%20gates.png?raw=true';"><span>[6]</span>
 			</p>
 			<p>
 				Using this, I made a single side of the voltage shifter as a test to ensure I could get it working. I made use of an osciloscope to allow checking of changing voltages.
 			</p>
 			<p>
-				<img src="trying the square.png">
+				<img src="trying the square.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/trying%20the%20square.png?raw=true';">
 			</p>
 			<p>
 				The above shows the Arduino connected to one of these bi-directional level shifters. I arranged it as a square to make it easier to see the difference between the directions (left goes to 5V and right goes to 3.3V in this case) and the voltage each transistor is running at (top at 5V and bottom at 3.3V). The 3.3V at the bottom is used as the Arduino has a 3.3V output; this will need to be changed to 1.8V for the IC
 			</p>
 			<p>
-				<img src="10k not 1k.png">
+				<img src="10k not 1k.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/10k%20not%201k.png?raw=true';">
 			</p>
 			<p>
 				The above shows the waveform output from one side of the voltage shifter; the top of the waveform correctly reaches 5V but the bottom of the waveform doesn't return to 0V.
 			</p>
 			<p>
-				<img class="half-width" src="1k.png">
-				<img class="half-width" src="10k.png">
+				<img class="half-width" src="1k.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/1k.png?raw=true';">
+				<img class="half-width" src="10k.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/10k.png?raw=true';">
 			</p>
 			<p>
 				I later discovered the cause of this to be the differnce between a 1kOhm resistor and a 10kOhm resistor which have almost identical coloured identifying stripes on them. 10k is brown, black, orange while 1k is brown, black, red. With this fixed, it worked correctly and I moved on to clean up the circuit, draw up the circuit and replicate it for the other line needed for I2C.
 			</p>
 			<p>
-				<img src="corrected 1.png">
+				<img src="corrected 1.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/corrected%201.png?raw=true';">
 			</p>
 			<p>
-				<img src="corrected 2.png">
+				<img src="corrected 2.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/corrected%202.png?raw=true';">
 			</p>
 			<p>
 				Checking that the fix has actually worked; both the 3.3V side and the 5V side show returning to 0V and reaching near to the correct voltage, 3V in the case of the 3.3V side and 4V in the case of the 5V side.
 			</p>
 			<p>
-				<img src="corrected diagram.png">
+				<img src="corrected diagram.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/corrected%20diagram.png?raw=true';">
 			</p>
 			<p>
 				Above shows the diagram drawn up in KiCAD.<br />
 				Below shows the circuit cleaned up and duplicated.
 			</p>
 			<p>
-				<img src="duplicated.png">
+				<img src="duplicated.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/duplicated.png?raw=true';">
 			</p>
 		</div>
 
@@ -696,19 +696,19 @@
 				<span>MOSFETs have arrived along with some pins to plug another Arduino into the breadboard.</span>
 			</p>
 			<p>
-				<img src="more components.png">
+				<img src="more components.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/more%20components.png?raw=true';">
 			</p>
 			<p>
 				<span>As expected, using the MOSFETs in the way described in the sources listed in the previous post proved to work first time. Below is the new circuit.</span>
 			</p>
 			<p>
-				<img src="mosfets installed.png">
+				<img src="mosfets installed.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/mosfets%20installed.png?raw=true';">
 			</p>
 			<p>
 				<span>The bellow image shows the serial return from the Arduino; it shows a successful serial connection from the Arduino, then a successful I2C connection from the Arduino to the IC, then a successful reading of the WHO_AM_I register as hex EA. However, the readings from the actual sensor parts of the IC return 0's.</span>
 			</p>
 			<p>
-				<img src="no IMU data still.png">
+				<img src="no IMU data still.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/no%20IMU%20data%20still.png?raw=true';">
 			</p>
 		</div>
 
@@ -725,13 +725,13 @@
 			    <span>From the ICs datasheet...</span>
 			</p>
 			<p>
-				<img src="sleep mode.png">
+				<img src="sleep mode.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/sleep%20mode.png?raw=true';">
 			</p>
 			<p>
 			    <span>None of the sensors are switched on at powerup</span>
 			</p>
 			<p>
-			    <img src="sleep mode register.png">
+			    <img src="sleep mode register.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/sleep%20mode%20register.png?raw=true';">
 			</p>
 			<p>
 			    <span>The sleep bit needs to be cleared before the sensors switch on.</span>
@@ -816,8 +816,8 @@
 			    <li>
 			        <span>Trying different test boards:</span>
 			        <ul>
-			            <li>Arduino Nano<br /><img src="Arduino nano.png" style="width:425px"></li>
-			            <li>Arduino Every<br /><img src="Arduino Every.png" style="width:425px"></li>
+			            <li>Arduino Nano<br /><img src="Arduino nano.png" style="width:425px" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/Arduino%20nano.png?raw=true';"></li>
+			            <li>Arduino Every<br /><img src="Arduino Every.png" style="width:425px" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/Arduino%20Every.png?raw=true';"></li>
 			        </ul>
 			        <span>The PCB works with neither of these.</span>
 			    </li>
@@ -837,19 +837,19 @@
 				12/5/2021	1:00AM
 			</p>
 			<p>
-			    <img src="Every with pre-made.png" alt="img of new PCB">
+			    <img src="Every with pre-made.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/Every%20with%20pre-made.png?raw=true';">
 			</p>
 			<p>
 			    <span>I received the pre-made PCB from Adafruit and have modified their example, which I had been trying to use with by PCB, and managed to get it to return all the necessary data. The below code prints the data to the serial bus back to the computer.</span>
 			</p>
 			<p>
-			    <img src="data to serial.png" alt="image of serial data">
+			    <img src="data to serial.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/data%20to%20serial.png?raw=true';">
 			</p>
 			<p>
 			    <span>I have also put together a program in Processing (a Java based drawing editor) which takes the serial data from the Arduino and displays a cube with the rotational translations applied.</span>
 			</p>
 			<p>
-			    <img src="cube.png" alt="image of Processing program">
+			    <img src="cube.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/cube.png?raw=true';">
 			</p>
 			<p>
 			    <span>The next steps will be fully implementing the display program to allow me to visualise what the Arduino is sensing and design a sensor filter to get accurate readings.</span>
@@ -890,6 +890,43 @@
 			</p>
 			<p>
 				<span>With this fixed, I have been able to get the cube to rotate with some resemblance the actual movement of the setup. However, the movement is not smoothed and doesn't correctly slow down yet; the cube continues to spin and move even when the board is still. There is <a href="https://github.com/TommyGymer/TVC-system/blob/main/sketch_3D_interface/demo.mp4"> a video of this </a> on the GitHub page that demo's me trying to stabilise the board by hand and shows the drift exprienced by the system. The first 30 seconds or so of the video, the system is calibrating using a simple average acceleration offset while the board is stationary.</span>
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Further progress with the data</h2>
+			</p>
+			<p class="date">
+				5/7/2021	4:42PM
+			</p>
+			<p>
+			    <span>I have now fully implemented the Euler angle version of the two programs which correctly represent the rotation with in the limits of Euler angles. As such, the demo still suffers from gimble lock, which is an inherent part of using Euler angles.</span>
+			</p>
+			<p>
+			    <span>This version is demonstrated in <a href="https://youtu.be/j1J1uJ9cu_Y">this video</a>.</span>
+			</p>
+			<p>
+			    <span>Solving this will require the implementation of Quaternions, also now aan axis-angle directions. These do not suffer from gimble lock through the use of a 4D number rather than the 3D ones used in Euler rotation.</span>
+			</p>
+		</div>
+
+
+
+		<div>
+			<p>
+				<h2>Finalised the data processing</h2>
+			</p>
+			<p class="date">
+				5/7/2021	4:45PM
+			</p>
+			<p>
+			    <span>I have finished implementing and testing the Quaterion implementation and am satified with the results I have seen. I have also added a servo to the system to test the Arduino's ability to control one. This required the use of an external power supply, though this could be easily replaced with a battery for the original intended implementation.</span>
+			</p>
+			<p>
+			    <span><a href="https://youtu.be/IOriJy_zD2g">Here is a link</a> to the video demonstrating the Quaternion implementation and servo.</span>
 			</p>
 		</div>
 	</body>
