@@ -40,6 +40,9 @@
 			<p>
 				Using the open-source circuit design tool "KiCAD", I have designed the block diagram of the circuit which will allow an Arduino to communicate with an IMU.
 			</p>
+			<p>
+				<img src="initial circuit.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/initial%20circuit.png?raw=true';">
+			</p>
 		</div>
 
 		<div>
@@ -70,6 +73,9 @@
 			<p>
 				I have added the required connections for communication and components for the voltage supply to the IC.
 			</p>
+			<p>
+	    		<img src="second circuit 2.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/second%20circuit%202.png?raw=true';">
+			</p>
 		</div>
 
 		<div>
@@ -86,6 +92,9 @@
 				The IMU is smaller than expected, making it very fragile. This made it very difficult to solder to as there are 12 pins within a 2mm by 2mm area, of which most need to be connected.
 			</p>
 			<p>
+				<img src="spider 1.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/spider%201.png?raw=true';">
+			</p>
+			<p>
 				After managing to connect the IMU to the Arduino and the Arduino then to a computer, I have read back some of the data from the IMU before one of the critical pads fell off the IC.
 			</p>
 			<p>
@@ -96,6 +105,9 @@
 			</p>
 			<p>
 				I have designed a third revision of the circuit using separate ICs for the acceleromter and gyroscope. This has vastly increased the complexity of the PCB as there are a number of communication traces which must be routed around each other.
+			</p>
+			<p>
+	    		<img src="third circuit.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/third%20circuit.png?raw=true';">
 			</p>
 			<p>
 				The block diagram of the circuit will need to be turned into a layout that can then be printed. The use of breadboard pins on the PCB will simplify the connecting of the PCB to an Arduino.
@@ -110,7 +122,13 @@
 				19/12/2020
 			</p>
 			<p>
+				<img src="render.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/render.png?raw=true';">
+			</p>
+			<p>
 				This version makes use of independent gyroscope and accelerometers which increases the complexity of the design. I have produced the Gerber file for the layout of the PCB and the BOM for the required components. These will need to be sent to a PCB manufacture to be produced.
+			</p>
+			<p>
+	    		<img src="layout.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/layout.png?raw=true';">
 			</p>
 			<p>
 				I have also cleaned up the block diagram of the circuit to make it easier to read and debug later if there are any issues.
@@ -161,8 +179,12 @@
 				I have finished the block diagram of the new circuit, selected the components for the PCB and created a BOM for it. I then uploaded the BOM to the manufacture's website to check avaliability of the components. I modified the Python script used to produce the BOM to fit the format required by the site.
 			</p>
 			<p>
-				All the components are currently avaliable through this site.
+	    		<img src="final circuit.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/final%20circuit.png?raw=true';">
+	        </p>
+			<p>
+				All the components are currently avaliable through PCBTrain, an online PCB manufacturer.
 			</p>
+			<img src="part list 3.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/part%20list%203.png?raw=true';">
 		</div>
 
 		<div>
@@ -171,6 +193,15 @@
 			</p>
 			<p class="date">
 				I have compiled my research into the theory behind the system and colated it to consider the areas that I still needed consider. This helped me to spot any areas that would be more compicated and reads that I didn't have sufficient research to resovle. This compilation has also made me more familiar to the concepts, which will make it eaasier to start writing the required software.
+			</p>
+			<p>
+				<span>Areas I have covered include:</span>
+				<ul>
+					<li>Torque</li>
+					<li>Angular momentum</li>
+					<li>Moments of interia</li>
+					<li>Solving for corrections using the thrust values</li>
+				</ul>
 			</p>
 		</div>
 
@@ -182,7 +213,7 @@
 				11/3/2021
 			</p>
 			<p>
-				I have installed and setup an environment in which to develop and deploy Arduino code to an Arduino to test the components required. I began this by researching and implemeting I2C communication of the Arduino.
+				I have installed and setup an environment in which to develop and deploy Arduino code to an Arduino to test the components required. I began this by researching and implemeting I2C communication of the Arduino; I wrote a simple sketch in which the communication line is initiallised and a transmission is conducted over the connection. I do not currently have any way of testing this code yet.
 			</p>
 		</div>
 
@@ -197,6 +228,9 @@
 				The PCBs have arrived from the manufacture. I can now start to work on testing these and integrating them with the software. The PCBs fit into the breadboard with the Arduino and I used a 22 gauge solid core wire to connect the two together.
 			</p>
 			<p>
+				<img src="circuit.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/circuit.png?raw=true';">
+			</p>
+			<p>
 				Using a multimeter, I check the voltages around the PCB to ensure that they were as expected. The supply voltage was reading back very low, so I increased the voltage at the top of the potential divider to try increase the supply voltage, which seemed to fix the issue.
 			</p>
 			<p>
@@ -205,17 +239,23 @@
 			<p>
 				With the circuit connected to the Arduino, I used the I2C code I had already written to read the value back from the WHO_AM_I register which readback the correct value. However, the dynamic values from the sensors remained null.
 			</p>
+			<p>
+				<img src="reading WHO_AM_I.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/reading%20WHO_AM_I.png?raw=true';">
+			</p>
 		</div>
 
 		<div>
 			<p>
-				<h2>Diagnosing the issue</h2>
+				<h2>Unable to read data registers</h2>
 			</p>
 			<p class="date">
 				18/3/2021
 			</p>
 			<p>
 				At first I assumed the issue was with the votlage supply to the IC not being high enough, being too high or simply fluctuating too much. Solving this would require another redesign to add either a different voltage regulation method, or to add more capcitance between the supply and ground.
+			</p>
+			<p>
+	    		<img src="no IMU data.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/no%20IMU%20data.png?raw=true';">
 			</p>
 		</div>
 
@@ -230,7 +270,13 @@
 				Having assumed that the issue was with feedback from the supply voltage from the Arduino and the communication lines causing invalid voltages being seen by the IC, I have researched, designed and made a voltage level shifter that should be able to solve the problem.
 			</p>
 			<p>
+				<img src="transistors.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/transistors.png?raw=true';">
+			</p>
+			<p>
 				I started with a naive solution using four transistors in a loop to isolate each side and allow bi-directional communication. However, this design did not function as I had hoped. I tested each side of the shifter separately and found that they worked when independent from each other using an oscilloscope to view the output of the circuit. I discovered an issue with one of the resistors being the incorrect value, though fixing this had no bearing on the result of the test.
+			</p>
+			<p>
+				<img src="trying the square.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/trying%20the%20square.png?raw=true';">
 			</p>
 		</div>
 
@@ -256,17 +302,23 @@
 			<p>
 				I have remade the circuit using the MOSFETs and communicaiton between the Arduino and IMU functions correctly on static registers, though the same null values as before are seen in the sensors' dynamic register.
 			</p>
+			<p>
+				<img src="mosfets installed.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/mosfets%20installed.png?raw=true';">
+			</p>
 		</div>
 
 		<div>
 			<p>
-				<h2>...</h2>
+				<h2>A possible break through</h2>
 			</p>
 			<p class="date">
 				22/4/2021
 			</p>
 			<p>
 				I have discovered a line in the datasheet of the IMU that describes a register that must be set to move out of sleep mode and start the sensors. This explains the null data and also suggests that the setup I had before would have funcitoned just as well.
+			</p>
+			<p>
+				<img src="sleep mode.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/sleep%20mode.png?raw=true';">
 			</p>
 		</div>
 
@@ -311,13 +363,16 @@
 
 		<div>
 			<p>
-				<h2>eleminating variables</h2>
+				<h2>Eleminating variables</h2>
 			</p>
 			<p class="date">
 				10/5/2021
 			</p>
 			<p>
 				Haing tried a number of different example softwares for the IMU, I have purchaced one of the commertial breakout boards for to eleminate this final variable. I have also tired the fourth revision PCB with two three different Arduino Nano's and an Arduino Every, none of which are able to get it to funciton.
+			</p>
+			<p>
+				<img src="Arduino Every.png" style="width:425px" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/Arduino%20Every.png?raw=true';">
 			</p>
 		</div>
 
@@ -330,6 +385,9 @@
 			</p>
 			<p>
 				I receive the pre-made PCB from Adafruit and have modified their example software to suit the outputs I need. The code prints the data form the sensors correctly.
+			</p>
+			<p>
+			    <img src="Every with pre-made.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/Every%20with%20pre-made.png?raw=true';">
 			</p>
 			<p>
 				I have written a program in Processing to process the data and turn it into rotations and movements for a cube. I will need to add a velocity display to this program. I might revist the fourth revision PCB if I find time.
@@ -347,6 +405,9 @@
 				I have setup a GitHub repository to store and version the code I have written. This will allow me to revert to funcitonal versions and document any changes that I make.
 			</p>
 			<p>
+				The GitHub page is available at "github.com/TommyGymer/TVC-System". This is where I have stored all of the code used in this project and also logged all of the code changes beyond those that I felt where large enough for their own record entry.
+			</p>
+			<p>
 				I am using GitHub for its accessibility, ease of use and also wide spread use in the devlopement indeustry.
 			</p>
 			<p>
@@ -357,6 +418,51 @@
 			</p>
 			<p>
 				I have corrected a number of bugs in the software and am now able to observe the movement, though the measurements drift overtime and will need to be filtered in some way to correct for this.
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Progress with the data from the IMU</h2>
+			</p>
+			<p class="date">
+				27/5/2021	11:44PM
+			</p>
+			<p>
+				<span>With the new pre-made PCB, I have been able to sucessfully pull the required data from it and read this data on connected computer. In a previous post, I was able to display a cube that moved randomly using this data. I recently found the issue; I had been interpreting an acceleration directly as a displacement (distance) which had resulted in seemingly random data with a magnitude similar to what I might have expected.</span>
+			</p>
+			<p>
+				<span>With this fixed, I have been able to get the cube in the Processing program to rotate in the same direction the Arduino and IMU, though the movement doesn't slow down. I recorded a video of this which is in the GitHub project.</span>
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Further progress with the data</h2>
+			</p>
+			<p class="date">
+				5/7/2021	4:42PM
+			</p>
+			<p>
+			    <span>I have now fully implemented the Euler angle version of the two programs which correctly represent the rotation with in the limits of Euler angles. As such, the demo still suffers from gimble lock, which is an inherent part of using Euler angles. This version also has a demonstration video on the GitHub.</span>
+			</p>
+			<p>
+				<span>Solving this will require an implementation of Quaternions, which I had hoped would not be necessary as they will add significant complexity to the code.</span>
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<h2>Finalised the data processing</h2>
+			</p>
+			<p class="date">
+				5/7/2021	4:45PM
+			</p>
+			<p>
+				<span>I have finished implementing and testing the Quaterion implementation and am satified with the results I have seen. I have also added a servo to the system to test the Arduino's ability to control one. This required the use of an external power supply, though this could be easily replaced with a battery for the original intended implementation. A demonstration of the final prototype is also available on the GitHub page.</span>
+			</p>
+			<p>
+				<span>The process of implementing Quaternions ended up being much simpler than expected, mostly due to the large number of well written sources I was able to find.</span>
 			</p>
 		</div>
 	</body>
