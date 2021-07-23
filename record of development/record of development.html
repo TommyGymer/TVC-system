@@ -26,6 +26,9 @@
 			a{
 				color: #0000ff;
 			}
+			p.eval{
+				color: #A00000;
+			}
 		</style>
 	</head>
 
@@ -42,6 +45,11 @@
 			</p>
 			<p>
 				<img src="initial circuit.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/initial%20circuit.png?raw=true';">
+			</p>
+			<p class="eval">
+				<span>
+					This first design gave me insight into how to make use of the manufacture's datasheet for a component to deduce its inputs and outputs, along with its power requirements.
+				</span>
 			</p>
 		</div>
 
@@ -76,6 +84,11 @@
 			<p>
 	    		<img src="second circuit 2.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/second%20circuit%202.png?raw=true';">
 			</p>
+			<p class="eval">
+				<span>
+					The process of designing extra versions furthered my experience with KiCAD and understanding component datasheets. The delays as a result of the component shortages and resultant delays caused a number of further problems, but the experience gained from having a PCB produce was worth the time spent on this stage.
+				</span>
+			</p>
 		</div>
 
 		<div>
@@ -99,6 +112,11 @@
 			</p>
 			<p>
 				The difficulty in soldering and the lack of any larger components being avaliable has resulted in the decision to design a PCB and have it printed. This will improve the durability of the circuit and ensure that it doesn't come appart.
+			</p>
+			<p class="eval">
+				<span>
+					This attempt to produce the circuit without a PCB proved the neccessity of a PCB while working with ICs in such small packages. At this stage, I was also able to get data from the IC, proving that the setup of Arduino and circuit was capable of data garthering.
+				</span>
 			</p>
 			<p>
 				<h2>Third revision of circuit</h2>
@@ -133,6 +151,11 @@
 			<p>
 				I have also cleaned up the block diagram of the circuit to make it easier to read and debug later if there are any issues.
 			</p>
+			<p class="eval">
+				<span>
+					The third version of the PCB is, while the closest to a PCB that might have functioned at this point, the most complicated and the one I would now, having brought it through to a full layout, want to complete again. The proximity of the traces makes it an arguable more sensitive to external noise.
+				</span>
+			</p>
 		</div>
 
 		<div>
@@ -144,6 +167,11 @@
 			</p>
 			<p>
 				One of the components required for the third revision of the design is not avaliable from the PCB manufacture I have been looking at. This will require either looking at another manufacure or redesigning for another component. I will redesign to remove the reliance on two independent ICs as this will reduce the complexity of the project in the software stage and also in the the layout of the PCB.
+			</p>
+			<p class="eval">
+				<span>
+					Component shortages forced another redesign; I wanted to move on from this stage of development at this point. However, this final design learns from a number of mistakes I made in the previous designs and is almost certainatly very close to functioning the way I intended. The experience I gained from this last version has given me the confidence that I could redesign it now and produce a PCB capable of what the industry PCB I purchaced is capable of.
+				</span>
 			</p>
 		</div>
 
@@ -159,6 +187,11 @@
 			</p>
 			<p>
 				The components in the third revision appear to have been superceeded and are no longer avaliable. I have researched other options and designed a fourth revision of the circuit using a new IMU that is the latest in lower power technology and accuracy. This will make it more complicated to use as it is a 1.8V product, but should be more accurate than the alternatives.
+			</p>
+			<p class="eval">
+				<span>
+					While the choice of this 1.8V component made the electronics significatly more difficult, I am now happy that I made this choice; the prevelance of 1.8V components will only increase as electronics continue to become lower power. Using this IC forced me to learn about how to manage different voltage levels within a system and how to get them to interact correctly.
+				</span>
 			</p>
 		</div>
 
@@ -184,7 +217,14 @@
 			<p>
 				All the components are currently avaliable through PCBTrain, an online PCB manufacturer.
 			</p>
-			<img src="part list 3.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/part%20list%203.png?raw=true';">
+			<p>
+				<img src="part list 3.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/part%20list%203.png?raw=true';">
+			</p>
+			<p class="eval">
+				<span>
+					The fourth and final version of the PCB shows the development I had made in the use of KiCAD to separate and simplify a circuit to its constituent components; the blocks in the block diagram show independent parts of the circuit clearly with their inputs and outputs clearly labelled. This compartmentalisation allows a quicker and better understanding of a circuit in reduced time, and ensures that debugging a circuit can be achieved in a relatively short period of time.
+				</span>
+			</p>
 		</div>
 
 		<div>
@@ -202,6 +242,11 @@
 					<li>Moments of interia</li>
 					<li>Solving for corrections using the thrust values</li>
 				</ul>
+			</p>
+			<p class="eval">
+				<span>
+					While I was unable to included this section of my reseach in the final artefact, it gave me insight into the Physics of such a system and the concepts required to make it possible; I might never have studied all of the required Physics without this project due to the complexity and specifisity of the concepts.
+				</span>
 			</p>
 		</div>
 
@@ -242,6 +287,11 @@
 			<p>
 				<img src="reading WHO_AM_I.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/reading%20WHO_AM_I.png?raw=true';">
 			</p>
+			<p class="eval">
+				<span>
+					At this point, I started to assume that all the work I had put into the PCB would finally pay off; this was not the case yet. However, in retrospect, this stage was a big accomplishment: I had designed, had manufactured and tested a PCB fully of my own making and was able to comunicate with it. Even though I was unable to get the data I wanted from it, being able to get through 90% of the process sucessfully first time is perhaps the accomplishment I am most proud of from this project.
+				</span>
+			</p>
 		</div>
 
 		<div>
@@ -256,6 +306,11 @@
 			</p>
 			<p>
 	    		<img src="no IMU data.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/no%20IMU%20data.png?raw=true';">
+			</p>
+			<p class="eval">
+				<span>
+					With no data coming in from the IC, I was just about ready to give up on continuing and took a week or so away from the project to allow the problems and frustrations to settle. From this, I hoped that a solution might present itself.
+				</span>
 			</p>
 		</div>
 
@@ -277,6 +332,11 @@
 			</p>
 			<p>
 				<img src="trying the square.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/trying%20the%20square.png?raw=true';">
+			</p>
+			<p class="eval">
+				<span>
+					The voltage level shifter idea was the product of the week I had taken away from the project to let my thoughs settle. Looking back now, I am almost certain that this was part of the solution to my problems, but not the whole solution. For now though, it had given me hope and inspiration to continue with the project, and to learn a little more.
+				</span>
 			</p>
 		</div>
 
@@ -305,6 +365,11 @@
 			<p>
 				<img src="mosfets installed.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/mosfets%20installed.png?raw=true';">
 			</p>
+			<p class="eval">
+				<span>
+					With the voltage level shifter idea brough to its final form, and no significant progress, I was once again with no clear direction forward and not a lot of motivation remaining. It was at this point I started to read beyond the parts of the datasheet I was more familiar with to try and find clues in a kind of desperate attempt to find the resons for the problems I was experiencing.
+				</span>
+			</p>
 		</div>
 
 		<div>
@@ -319,6 +384,11 @@
 			</p>
 			<p>
 				<img src="sleep mode.png" onerror="this.onerror=null;this.src='https://github.com/TommyGymer/TVC-system/blob/main/record%20of%20development/sleep%20mode.png?raw=true';">
+			</p>
+			<p class="eval">
+				<span>
+					Another of what I now suspect to be the cause of the problems showed itself; I had misunderstood how the IC was designed to function and overlooked a number of setup steps I needed to take. Most of these had been the result of a misunderstanding due to the first version I had managed to get working for a short time with a different IC. This version had required no setup and data could be extracted from it with no initialisation.
+				</span>
 			</p>
 		</div>
 
@@ -346,6 +416,16 @@
 			</p>
 			<p>
 				I have been unable to get access to a digital oscilloscope, so will need to assume that the I2C works and eleminate this variable some other way.
+			</p>
+			<p class="eval">
+				<span>
+					With my attemps at solving any software problems not solving anything, I started to look to other place the system might have problems. The hardware was the clear pair to the software, so this is where I next looked for problems. The attemped debugging of the hardware taught me a number of skills with oscilloscopes and making use of the original design to try and find any oversights. During this process I found a number of oversights I had made that I suspect are the root cause for all the issues I had.
+				</span>
+			</p>
+			<p class="eval">
+				<span>
+					The first of these was more an issue with my design philosophy in which I had limited the changes I could make to the circuit on the PCB to effectively nothing after it had been manufactured. I should have designed the PCB with a number of different components and structures to allow the inputs to the IC to be manipulated fully, compared to the full lack of control I had over these inputs in the version that I had made.
+				</span>
 			</p>
 		</div>
 
@@ -391,6 +471,11 @@
 			</p>
 			<p>
 				I have written a program in Processing to process the data and turn it into rotations and movements for a cube. I will need to add a velocity display to this program. I might revist the fourth revision PCB if I find time.
+			</p>
+			<p class="eval">
+				<span>
+					Having found evidence and confidence in the errors and oversights I had found in my PCB, I no longer had time to redesign and have another manufactured. As such, I purchanced a pre-made board with the intention of trying to figure out the differences between it and the PCB I had made. The differences were more or less as I had suspected, showing that I had sucessfully diagnosed most of the errors from the PCB and correctly decided on solutions to them.
+				</span>
 			</p>	
 		</div>
 
@@ -409,6 +494,11 @@
 			</p>
 			<p>
 				I am using GitHub for its accessibility, ease of use and also wide spread use in the devlopement indeustry.
+			</p>
+			<p class="eval">
+				<span>
+					My use of GitHub was a neccessary one and learning the skills required to use it will allow me to fit well into a more industrial software development environment; these kinds of tools are used extensively in industry to allow a team to work on the same project.
+				</span>
 			</p>
 			<p>
 				<h2>Progress with data from the IMU</h2>
@@ -466,6 +556,26 @@
 			</p>
 			<p>
 				<span>The process of implementing Quaternions ended up being much simpler than expected, mostly due to the large number of well written sources I was able to find. In this version, I also implemented a servo controller that could control a servo using the calculated data about the rotation of the system. This required an external power source, which could have been replaced with a battery to make the prototype independent.</span>
+			</p>
+			<p class="eval">
+				<span>
+					In conclusion, I have enjoyed learning the rather extensive list of skills required to design your own hardware and write software for it. The process has also taught me about some issues with the way in which I approach complex and intense problems like the one I set myself with this project; my initial reseach needed to be more indepth to ensure that I made fewer mistakes with time allocation to different tasks and to overall reduce the time spent on certain areas.
+				</span>
+			</p>
+			<p class="eval">
+				<span>
+					However, many of the issues and changes I would now make to the project were I to repeat it, I would have had no way of knowing without some experience in hardware (of which I had had none before this project). I am pleased with the way in which the software was developed and the results I saw from it. The inclusion of GitHub gave me something to learn in this area beside the Mathmatics required for the code (such as Quaternions) and should improve my code management in any subsequent projects.
+				</span>
+			</p>
+			<p class="eval">
+				<span>
+					Time management has also been a weak point of this project; the causes for this have been rather varied, though I feel that the updates to my Gantt charts show the issue well. Each of the two updates show large periods of time either waiting for components, or unexpected redesigns for component shortages. Another cause has been my underestimation for the complexity of the hardware I was trying to develop and overestimation of my motivation to continue working on it after facing road blocks and deviating from previous time schedules.
+				</span>
+			</p>
+			<p class="eval">
+				<span>
+					To have made it to the end of the project with a functionaly prototype, while not complete, as the most challenging project I have ever completed has been amazing. While the final artefact might not be as visually impresive as a model rocket, the skills learn, time spent, and resiliance I have built up over the project has gone far beyond what I expected when I began the project.
+				</span>
 			</p>
 		</div>
 	</body>
